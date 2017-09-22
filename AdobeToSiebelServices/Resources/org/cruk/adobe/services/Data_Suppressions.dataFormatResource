@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jndi:namedResource xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dataformat="http://ns.tibco.com/bw/palette/dataformat" xmlns:fd15864a-d67a-424f-8d69-7cc9fe19c694="http://ns.tibco.com/bw/palette/dataformat/fd15864a-d67a-424f-8d69-7cc9fe19c694" xmlns:jndi="http://xsd.tns.tibco.com/amf/models/sharedresource/jndi" xmi:id="_lU3RYGJFEeeNi6GwICYLYw" name="org.cruk.adobe.services.Data_Suppressions" type="dataformat:DataFormat">
+  <imports xmi:id="_V3nOUGJHEeeNi6GwICYLYw" importType="http://www.w3.org/2001/XMLSchema" namespace="http://ns.tibco.com/bw/palette/dataformat/fd15864a-d67a-424f-8d69-7cc9fe19c694"/>
+  <jndi:configuration xsi:type="dataformat:DataFormat" xmi:id="_lU3RYWJFEeeNi6GwICYLYw" formatType="Delimiter separated" colSeparator="|" colSeparatorParseRule="Treat all characters as entered as a single column separator string" lineSeparator="Carriage Return/Line Feed (windows)" fillCharacter="Space" schemaElementQName="fd15864a-d67a-424f-8d69-7cc9fe19c694:suppressions" fieldOffsetsStr="CHANNEL_CD(0,0)&#xA;SRC_EFF_END_DT(0,0)&#xA;SIEBEL_ROW_ID(0,0)&#xA;SRC_EFF_START_DT(0,0)&#xA;SUPPR_CD(0,0)&#xA;OWN_PARTY_URN(0,0)">
+    <fieldOffsets xmi:id="_V4VnFWJHEeeNi6GwICYLYw" name="CHANNEL_CD"/>
+    <fieldOffsets xmi:id="_V4VnFGJHEeeNi6GwICYLYw" name="SRC_EFF_END_DT"/>
+    <fieldOffsets xmi:id="_V4VnEGJHEeeNi6GwICYLYw" name="SIEBEL_ROW_ID"/>
+    <fieldOffsets xmi:id="_V4VnE2JHEeeNi6GwICYLYw" name="SRC_EFF_START_DT"/>
+    <fieldOffsets xmi:id="_V4VnEmJHEeeNi6GwICYLYw" name="SUPPR_CD"/>
+    <fieldOffsets xmi:id="_V4VnEWJHEeeNi6GwICYLYw" name="OWN_PARTY_URN"/>
+  </jndi:configuration>
+</jndi:namedResource>

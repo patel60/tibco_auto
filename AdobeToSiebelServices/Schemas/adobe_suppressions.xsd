@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:dataformat="http://ns.tibco.com/bw/palette/dataformat/fd15864a-d67a-424f-8d69-7cc9fe19c694" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ns.tibco.com/bw/palette/dataformat/fd15864a-d67a-424f-8d69-7cc9fe19c694">
+  <xsd:element name="suppressions" tibex:source="sr.index.dataFormatResource">
+    <xsd:complexType>
+      <xsd:sequence>
+                <xsd:element name="CHANNEL_CD" type="xsd:string"/>
+                <xsd:element name="SRC_EFF_END_DT" type="xsd:string"/>
+                <xsd:element name="SIEBEL_ROW_ID" type="xsd:string"/>
+                <xsd:element name="SRC_EFF_START_DT" type="xsd:string"/>
+                <xsd:element name="SUPPR_CD" type="xsd:string"/>
+                <xsd:element name="OWN_PARTY_URN" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

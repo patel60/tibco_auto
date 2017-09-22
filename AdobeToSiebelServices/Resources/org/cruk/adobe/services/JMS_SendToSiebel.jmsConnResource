@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jndi:namedResource xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jms="http://xsd.tns.tibco.com/bw/models/sharedresource/jms" xmlns:jndi="http://xsd.tns.tibco.com/amf/models/sharedresource/jndi" xmi:id="_y3AB0C_eEeeTroh1VCOddg" name="org.cruk.adobe.services.JMS_SendToSiebel" type="jms:JMSConnectionFactory">
+  <jndi:configuration xsi:type="jms:DirectConnectionFactory" xmi:id="_0A4bAC_eEeeTroh1VCOddg" factoryType="Queue/Topic">
+    <substitutionBindings xmi:id="_lyySsC_gEeeTroh1VCOddg" template="providerURL" propName="/org.cruk.adobe.resources/JMS/provider.url"/>
+    <substitutionBindings xmi:id="_hrzu4C_jEeeQ88eB_yAM9A" template="ufo" propName="/org.cruk.adobe.resources/JMS/use.ufo.connectionfactory"/>
+    <userCredentials xmi:id="_5HhcQEuLEeedY6RQnDWivg">
+      <substitutionBindings xmi:id="_5hai8EuLEeedY6RQnDWivg" template="username" propName="/org.cruk.adobe.resources/JMS/user.name"/>
+      <substitutionBindings xmi:id="_6iCScEuLEeedY6RQnDWivg" template="password" propName="/org.cruk.adobe.resources/JMS/user.password"/>
+    </userCredentials>
+  </jndi:configuration>
+</jndi:namedResource>

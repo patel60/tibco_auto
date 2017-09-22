@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jndi:namedResource xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://xsd.tns.tibco.com/amf/models/sharedresource/jdbc" xmlns:jndi="http://xsd.tns.tibco.com/amf/models/sharedresource/jndi" xmlns:subject="http://xsd.tns.tibco.com/trinity/models/identity/subject" xmi:id="_a_1DcTABEeeQ88eB_yAM9A" name="org.cruk.adobe.services.JDBC_DI_URN_CAN" type="jdbc:JdbcDataSource">
+  <jndi:reference xmi:id="_bAtNMDABEeeQ88eB_yAM9A" key="subjectJndiName" type="subject:SubjectConfiguration" value=""/>
+  <jndi:configuration xsi:type="jdbc:JdbcDataSource" xmi:id="_bAtNMTABEeeQ88eB_yAM9A">
+    <substitutionBindings xmi:id="_UOQ-IDADEeeQ88eB_yAM9A" template="maxConnections" propName="/org.cruk.adobe.resources/JDBC/max.conn"/>
+    <substitutionBindings xmi:id="_U_PIEDADEeeQ88eB_yAM9A" template="username" propName="/org.cruk.adobe.resources/JDBC/db_user"/>
+    <substitutionBindings xmi:id="_wADNkDAEEeeQ88eB_yAM9A" template="password" propName="/org.cruk.adobe.resources/JDBC/db_password"/>
+    <connectionConfig xsi:type="jdbc:NonXaConnection" xmi:id="_bAtNMjABEeeQ88eB_yAM9A">
+      <substitutionBindings xmi:id="_0RAFYDAEEeeQ88eB_yAM9A" template="jdbcDriver" propName="/org.cruk.adobe.resources/JDBC/database_driver"/>
+      <substitutionBindings xmi:id="_4DhUwDAEEeeQ88eB_yAM9A" template="dbURL" propName="/org.cruk.adobe.resources/JDBC/database_url"/>
+    </connectionConfig>
+  </jndi:configuration>
+</jndi:namedResource>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jndi:namedResource xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jndi="http://xsd.tns.tibco.com/amf/models/sharedresource/jndi" xmlns:sftpconnection="http://ns.tibco.com/bw/palette/sftpconnection" xmi:id="_MJcBoSwJEeeEDd4PCiWjqw" name="org.cruk.adobe.services.SFTP_AdobeServer" type="sftpconnection:sftpconnection">
+  <jndi:configuration xsi:type="sftpconnection:SFTPConnection" xmi:id="_MJfsACwJEeeEDd4PCiWjqw" privKeyAuth="true">
+    <substitutionBindings xmi:id="_-5ojACwJEeeEDd4PCiWjqw" template="host" propName="/org.cruk.adobe.resources/SFTP/host.name"/>
+    <substitutionBindings xmi:id="__ntxACwJEeeEDd4PCiWjqw" template="port" propName="/org.cruk.adobe.resources/SFTP/port"/>
+    <substitutionBindings xmi:id="_AQ4p0CwKEeeEDd4PCiWjqw" template="userName" propName="/org.cruk.adobe.resources/SFTP/user.name"/>
+    <substitutionBindings xmi:id="_vI1U4DAIEeeQ88eB_yAM9A" template="privKey" propName="/org.cruk.adobe.resources/SFTP/private.key"/>
+    <substitutionBindings xmi:id="_PU6T4DblEeeQVutoKlNNdQ" template="privKeypassword" propName="/org.cruk.adobe.resources/SFTP/private.key.password"/>
+  </jndi:configuration>
+</jndi:namedResource>

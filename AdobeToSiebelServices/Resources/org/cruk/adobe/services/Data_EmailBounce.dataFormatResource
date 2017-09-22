@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jndi:namedResource xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dataformat="http://ns.tibco.com/bw/palette/dataformat" xmlns:emailbounce="http://cruk.org/tibco/2017/adobe/emailbounce" xmlns:jndi="http://xsd.tns.tibco.com/amf/models/sharedresource/jndi" xmi:id="_jjyHoDCoEeeWaPMfgWeAiw" name="org.cruk.adobe.services.Data_EmailBounce" type="dataformat:DataFormat">
+  <imports xmi:id="_pQSFgDCqEeeWaPMfgWeAiw" importType="http://www.w3.org/2001/XMLSchema" namespace="http://cruk.org/tibco/2017/adobe/emailbounce"/>
+  <jndi:configuration xsi:type="dataformat:DataFormat" xmi:id="_jj4OQDCoEeeWaPMfgWeAiw" formatType="Delimiter separated" colSeparator="|" colSeparatorParseRule="Treat all characters as entered as a single column separator string" lineSeparator="New Line" fillCharacter="Space" schemaElementQName="emailbounce:email_details" fieldOffsetsStr="PERSON_UID(0,0)&#xA;OUTCOME_CD(0,0)&#xA;X_SRM_EMAIL_ADDR(0,0)">
+    <fieldOffsets xmi:id="_pQ7lwDCqEeeWaPMfgWeAiw" name="PERSON_UID"/>
+    <fieldOffsets xmi:id="_pQ7lwTCqEeeWaPMfgWeAiw" name="OUTCOME_CD"/>
+    <fieldOffsets xmi:id="_pQ7lwjCqEeeWaPMfgWeAiw" name="X_SRM_EMAIL_ADDR"/>
+  </jndi:configuration>
+</jndi:namedResource>

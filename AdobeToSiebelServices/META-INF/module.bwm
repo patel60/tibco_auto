@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sca:composite xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:BW="http://xsd.tns.tibco.com/amf/models/sca/implementationtype/BW" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:compositeext="http://schemas.tibco.com/amx/3.0/compositeext" xmlns:property="http://ns.tibco.com/bw/property" xmlns:sca="http://www.osoa.org/xmlns/sca/1.0" xmlns:scaext="http://xsd.tns.tibco.com/amf/models/sca/extensions" xmi:id="_4noXQCv6EeeEDd4PCiWjqw" targetNamespace="http://tns.tibco.com/bw/composite/AdobeToSiebelServices" name="AdobeToSiebelServices" compositeext:version="1.0.0" compositeext:formatVersion="2">
+  <sca:property xmi:id="_5dJC8Cv6EeeEDd4PCiWjqw" name="BW.DEPLOYMENTUNIT.TYPE" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_5d-wcCv6EeeEDd4PCiWjqw" name="BW.APPNODE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_5eNZ8Cv6EeeEDd4PCiWjqw" name="BW.DEPLOYMENTUNIT.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_5eefsCv6EeeEDd4PCiWjqw" name="BW.HOST.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_5elNYCv6EeeEDd4PCiWjqw" name="BW.DOMAIN.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_5eqF4Cv6EeeEDd4PCiWjqw" name="BW.DEPLOYMENTUNIT.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_5euXUCv6EeeEDd4PCiWjqw" name="BW.APPSPACE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_5ezP0Cv6EeeEDd4PCiWjqw" name="BW.MODULE.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_5e4IUCv6EeeEDd4PCiWjqw" name="BW.MODULE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_T7TbcCwJEeeEDd4PCiWjqw" name="/org.cruk.adobe.resources/SFTP/host.name" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_up_roCwJEeeEDd4PCiWjqw" name="/org.cruk.adobe.resources/SFTP/port" type="XMLSchema:int" scaext:simpleValue="0" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_2xJY8CwJEeeEDd4PCiWjqw" name="/org.cruk.adobe.resources/SFTP/user.name" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_0VbVkDAIEeeQ88eB_yAM9A" name="/org.cruk.adobe.resources/SFTP/private.key" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_0lRIYDAIEeeQ88eB_yAM9A" name="/org.cruk.adobe.resources/SFTP/private.key.password" type="property:password" scaext:simpleValue="#!Gp2NKL5E9pxuBv/vw1+Ifw==" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_hY4TMC_gEeeTroh1VCOddg" name="/org.cruk.adobe.resources/JMS/provider.url" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_cKL5YC_jEeeQ88eB_yAM9A" name="/org.cruk.adobe.resources/JMS/use.ufo.connectionfactory" type="XMLSchema:boolean" scaext:simpleValue="false" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_rh8XYEuLEeedY6RQnDWivg" name="/org.cruk.adobe.resources/JMS/user.name" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_roQawEuLEeedY6RQnDWivg" name="/org.cruk.adobe.resources/JMS/user.password" type="property:password" scaext:simpleValue="#!VdUAbUQfhn5d+53kEDeDkA==" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_F0tUEDACEeeQ88eB_yAM9A" name="/org.cruk.adobe.resources/JDBC/max.conn" type="XMLSchema:int" scaext:simpleValue="0" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_MNhQQDACEeeQ88eB_yAM9A" name="/org.cruk.adobe.resources/JDBC/db_user" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_MRa40DACEeeQ88eB_yAM9A" name="/org.cruk.adobe.resources/JDBC/db_password" type="property:password" scaext:simpleValue="#!ga8sFIx7NDSz69M50f9fkQ==" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_W5PMEDACEeeQ88eB_yAM9A" name="/org.cruk.adobe.resources/JDBC/database_driver" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_W9Z6YDACEeeQ88eB_yAM9A" name="/org.cruk.adobe.resources/JDBC/database_url" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_URlYACwKEeeEDd4PCiWjqw" name="/org.cruk.adobe.services/SendToSiebel/time.interval" type="XMLSchema:int" scaext:simpleValue="0" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_pfuXIC_jEeeQ88eB_yAM9A" name="/org.cruk.adobe.services/SendToSiebel/siebel.topic.name" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_U9XAIDAAEeeQ88eB_yAM9A" name="/org.cruk.adobe.services/SendToSiebel/siebel.IntObjectFormat" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_VBXWYDAAEeeQ88eB_yAM9A" name="/org.cruk.adobe.services/SendToSiebel/siebel.IntObjectName" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_VFLfYDAAEeeQ88eB_yAM9A" name="/org.cruk.adobe.services/SendToSiebel/siebel.MessageType" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_tGFV0DAPEeeQ88eB_yAM9A" name="/org.cruk.adobe.services/SendToSiebel/file.name.prefix" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_TGws0DCuEeeWaPMfgWeAiw" name="/org.cruk.adobe.services/SendToSiebel/old.directory.name" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_TNe_4DCuEeeWaPMfgWeAiw" name="/org.cruk.adobe.services/SendToSiebel/new.directory.name" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_52sn4DDbEeeVA_eSrdX5iA" name="/org.cruk.adobe.services/SendToSiebel/email_from" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_58VV0DDbEeeVA_eSrdX5iA" name="/org.cruk.adobe.services/SendToSiebel/email_to" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_WkGAcDDcEeeVA_eSrdX5iA" name="/org.cruk.adobe.services/SendToSiebel/email.err.queue" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_8YWdUGJUEeeHdMkyFUOA7Q" name="/org.cruk.adobe.services/SendToSiebel/supp.filename.prefix" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:component xmi:id="_oEWF8CwMEeeEDd4PCiWjqw" name="ComponentSendToSiebelEmailBounces1" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_oEWF8SwMEeeEDd4PCiWjqw" processName="org.cruk.adobe.services.SendToSiebelEmailBounces"/>
+  </sca:component>
+  <sca:component xmi:id="_NX6jQGL5EeebiLKcAVQAKw" name="ComponentActivator" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_NX6jQWL5EeebiLKcAVQAKw" processName="org.cruk.adobe.services.Activator"/>
+  </sca:component>
+  <sca:component xmi:id="_HEMtAGL6EeeB_dDfHfPSMA" name="ComponentSendToSiebelSuppressions" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_HEMtAWL6EeeB_dDfHfPSMA" processName="org.cruk.adobe.services.SendToSiebelSuppressions"/>
+  </sca:component>
+  <sca:component xmi:id="_-V_dcHhHEeekW6Jx4oPlxg" name="ComponentRefresh_Suppressions" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_-V_dcXhHEeekW6Jx4oPlxg" processName="org.cruk.adobe.services.Refresh_Suppressions"/>
+  </sca:component>
+</sca:composite>

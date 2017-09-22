@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+ targetNamespace="http://cruk.org/tibco/2017/adobe/emailbounce" 
+ xmlns:tns="http://cruk.org/tibco/2017/adobe/emailbounce" elementFormDefault="qualified">
+ <element name="email_details">
+  <complexType>
+    <sequence>
+     <element name="PERSON_UID" type="string" maxOccurs="1" minOccurs="1"/>
+     <element name="OUTCOME_CD" type="string" maxOccurs="1" minOccurs="1"/>
+     <element name="X_SRM_EMAIL_ADDR" type="string" maxOccurs="1" minOccurs="1"/>
+    </sequence>
+  </complexType>
+  </element>
+ 
+</schema>
