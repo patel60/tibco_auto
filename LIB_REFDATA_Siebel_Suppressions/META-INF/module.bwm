@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sca:composite xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:compositeext="http://schemas.tibco.com/amx/3.0/compositeext" xmlns:sca="http://www.osoa.org/xmlns/sca/1.0" xmlns:scaext="http://xsd.tns.tibco.com/amf/models/sca/extensions" xmlns:tibprop="http://ns.tibco.com/bw/property" xmi:id="_v7U3UJ0UEeaqrqEgYLyUSQ" targetNamespace="http://tns.tibco.com/bw/composite/LIB_REFDATA_Siebel_Suppressions" name="LIB_REFDATA_Siebel_Suppressions" compositeext:version="1.0.0" compositeext:formatVersion="2">
+  <sca:property xmi:id="_v-xM4J0UEeaqrqEgYLyUSQ" name="BW.DEPLOYMENTUNIT.TYPE" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_v-3TgJ0UEeaqrqEgYLyUSQ" name="BW.APPNODE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_v-4hoJ0UEeaqrqEgYLyUSQ" name="BW.DEPLOYMENTUNIT.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_v-5vwJ0UEeaqrqEgYLyUSQ" name="BW.HOST.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_v-6W0J0UEeaqrqEgYLyUSQ" name="BW.DOMAIN.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_v-7k8J0UEeaqrqEgYLyUSQ" name="BW.DEPLOYMENTUNIT.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_v-8zEJ0UEeaqrqEgYLyUSQ" name="BW.APPSPACE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_v-9aIJ0UEeaqrqEgYLyUSQ" name="BW.MODULE.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_v--oQJ0UEeaqrqEgYLyUSQ" name="BW.MODULE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_d_ylwKTeEeaWJMJW7muE7w" name="/resources/org.cruk.lib.Siebel.Suppressions/Client-Siebel/JDBCConnection/Username" type="XMLSchema:string" scaext:simpleValue="" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_fiEQ0KTeEeaWJMJW7muE7w" name="/resources/org.cruk.lib.Siebel.Suppressions/Client-Siebel/JDBCConnection/Password" type="tibprop:password" scaext:simpleValue="" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_kD-80KTeEeaWJMJW7muE7w" name="/resources/org.cruk.lib.Siebel.Suppressions/Client-Siebel/JDBCDriver/DatabaseDriver" type="XMLSchema:string" scaext:simpleValue="" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_lxSzMKTeEeaWJMJW7muE7w" name="/resources/org.cruk.lib.Siebel.Suppressions/Client-Siebel/JDBCDriver/DatabaseURL" type="XMLSchema:string" scaext:simpleValue="" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_ludq0Ht4EeerZ6T8bcaXvg" name="/services/jdbc.row.limit" type="XMLSchema:int" scaext:simpleValue="0" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_K4N7kJ0VEeaqrqEgYLyUSQ" name="/services/SetSiebelSuppressions/EndPointURI" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_NLzu0J0VEeaqrqEgYLyUSQ" name="/services/GetSiebelSuppressions/EndPointURI" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+</sca:composite>

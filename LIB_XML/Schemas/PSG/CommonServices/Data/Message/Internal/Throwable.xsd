@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	targetNamespace="http://www.tibco.com/PSG/CommonServices/Data/Message/Internal/Throwable" 
+	xmlns:tns="http://www.tibco.com/PSG/CommonServices/Data/Message/Internal/Throwable"
+	xmlns:fault="http://www.tibco.com/PSG/CommonServices/Data/Message/Fault.2"  
+	elementFormDefault="qualified">
+
+	<!-- Imports -->
+	<xsd:import namespace="http://www.tibco.com/PSG/CommonServices/Data/Message/Fault.2" schemaLocation="../Fault.2.xsd"/>
+
+	<!--  Elements -->
+	<xsd:element name="ThrowableFault" type="tns:ThrowableType"/>
+	<xsd:element name="ThrowableValidationFault" type="tns:ThrowableType"/>
+	<xsd:element name="ThrowableBackEndFault" type="tns:ThrowableType"/>
+	<xsd:element name="ThrowableTimeoutFault" type="tns:ThrowableType"/>
+	<xsd:element name="ThrowableAuthenticationFault" type="tns:ThrowableType"/>
+	
+	<!-- Complex Types -->
+	<xsd:complexType name="ThrowableType">
+		<xsd:sequence>
+			<xsd:element ref="fault:Severity" minOccurs="0"/>
+			<xsd:element ref="fault:ExceptionTimestamp"/>
+			<xsd:element ref="fault:ExceptionDescription" minOccurs="0"/>
+			<xsd:element ref="fault:ExceptionDetails" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+</xsd:schema>

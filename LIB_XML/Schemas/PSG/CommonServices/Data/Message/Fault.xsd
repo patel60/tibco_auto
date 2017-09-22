@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+	targetNamespace="http://www.tibco.com/PSG/CommonServices/Data/Message/Fault" 
+	elementFormDefault="qualified" 	 
+	xmlns:com="http://www.tibco.com/PSG/CommonServices/Data/Message/Common"
+	xmlns:rctx="http://www.tibco.com/PSG/CommonServices/Data/Message/RuntimeContext"
+	xmlns:tns="http://www.tibco.com/PSG/CommonServices/Data/Message/Fault">
+	
+	<!-- Imports -->
+	<import schemaLocation="Common.xsd" namespace="http://www.tibco.com/PSG/CommonServices/Data/Message/Common"/>
+	<import schemaLocation="RuntimeContext.xsd" namespace="http://www.tibco.com/PSG/CommonServices/Data/Message/RuntimeContext"/>
+	
+	<!-- Elements -->
+	<element name="FaultList" type="tns:FaultListType"/>
+	<element name="Fault" type="tns:FaultType"/>
+	<element name="FaultDetails" type="tns:FaultDetailsType"/>
+	<element name="ExceptionId" type="string"/>
+	<element name="ExceptionTimestamp" type="dateTime"/>
+	<element name="ExceptionName" type="string"/>
+	<element name="isAudited" type="boolean" default="false"/>
+	<element name="ActivityName" type="string"/>
+	<element name="Msg" type="string"/>
+	<element name="MsgCode" type="string"/>
+	<element name="ProcessStack" type="string"/>
+	<element name="StackTrace" type="string"/>
+
+	<!-- Complex Types -->
+	<complexType name="FaultType">
+		<sequence>
+			<element ref="com:CorrelationId" />
+			<element ref="tns:ExceptionId" />
+			<element ref="tns:ExceptionTimestamp" />
+			<element ref="tns:ExceptionName" maxOccurs="1" minOccurs="0"/>
+			<element ref="tns:isAudited"/>			
+			<element ref="tns:FaultDetails"/>
+			<element ref="rctx:RuntimeContext"/>
+			<element ref="com:Payload" maxOccurs="1" minOccurs="0"/>
+			
+		</sequence>
+	</complexType>	
+	<complexType name="FaultDetailsType">
+		<sequence>
+			<element ref="tns:ActivityName"/>
+			<element name="Data" minOccurs="0" maxOccurs="1">
+				<complexType>
+					<sequence>
+						<any processContents="skip" minOccurs="0" maxOccurs="1"></any>
+					</sequence>
+				</complexType>
+			</element>
+			<element ref="tns:Msg"/>
+			<element ref="tns:MsgCode"/>
+			<element ref="tns:ProcessStack"/>
+			<element ref="tns:StackTrace"/>
+		</sequence>
+	</complexType>
+		<complexType name="FaultListType">
+		<sequence>
+			<element ref="tns:Fault" maxOccurs="unbounded" minOccurs="0"/>
+		</sequence>
+	</complexType>
+</schema>

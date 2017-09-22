@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions 
+	xmlns:extns="http://www.tibco.com/PSG/CommonServices/Message/TS/Util/sub/CreateExceptionEvent" 
+	xmlns:tns="http://www.tibco.com/PSG/CommonServices/TS/Util/sub/CreateExceptionEvent" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	name="CreateExceptionEvent"
+	targetNamespace="http://www.tibco.com/PSG/CommonServices/TS/Util/sub/CreateExceptionEvent">
+	
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import
+				namespace="http://www.tibco.com/PSG/CommonServices/Message/TS/Util/sub/CreateExceptionEvent" 
+				schemaLocation="../../../../../../Schemas/PSG/CommonServices/Message/TS/Util/sub/CreateExceptionEvent.xsd">
+			</xsd:import>
+		</xsd:schema>
+  	</wsdl:types>
+  
+  
+  <wsdl:message name="CreateExceptionEventRequest">
+    <wsdl:part element="extns:CreateExceptionEventRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="CreateExceptionEventResponse">
+    <wsdl:part element="extns:CreateExceptionEventResponse" name="parameters"/>
+  </wsdl:message>
+  
+  <wsdl:portType name="CreateExceptionEvent">
+    <wsdl:operation name="CreateExceptionEvent">
+      <wsdl:input message="tns:CreateExceptionEventRequest" name="CreateExceptionEventinput"/>
+      <wsdl:output message="tns:CreateExceptionEventResponse" name="CreateExceptionEventoutput"/>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

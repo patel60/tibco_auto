@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:com="http://www.tibco.com/PSG/CommonServices/Data/Message/Common" xmlns:rtc="http://www.tibco.com/PSG/CommonServices/Data/Message/RuntimeContext" xmlns:sltns="http://www.tibco.com/PSG/CommonServices/Data/Message/AuditEvent" xmlns:tns="http://www.tibco.com/PSG/CommonServices/Message/TS/Util/sub/SendAuditEvent" xmlns:trc="http://www.tibco.com/PSG/CommonServices/Data/Message/Audit" elementFormDefault="qualified" targetNamespace="http://www.tibco.com/PSG/CommonServices/Message/TS/Util/sub/SendAuditEvent">
+	
+	<import namespace="http://www.tibco.com/PSG/CommonServices/Data/Message/Common"/>
+	<import namespace="http://www.tibco.com/PSG/CommonServices/Data/Message/AuditEvent"/>
+	<import namespace="http://www.tibco.com/PSG/CommonServices/Data/Message/Audit"/>
+	<import namespace="http://www.tibco.com/PSG/CommonServices/Data/Message/RuntimeContext"/>
+	
+	<element name="SendAuditEventRequest" type="tns:SendAuditEventRequestType"/>
+	<element name="PreviousEventTimeStamp" type="dateTime"/>
+	<element name="AuditEvent" type="tns:AuditEventType"/>
+	
+	<complexType name="SendAuditEventRequestType">
+		<sequence>
+		<element minOccurs="0" ref="trc:AuditOptions"/>
+		<element maxOccurs="unbounded" minOccurs="0" ref="tns:AuditEvent"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="AuditEventType">
+		<sequence>		
+			<element ref="com:CorrelationId"/>
+			<element ref="sltns:EventType"/>
+			<element ref="rtc:ServiceName"/>
+			<element maxOccurs="1" minOccurs="0" ref="sltns:Message"/>
+            <element maxOccurs="1" minOccurs="0" ref="sltns:AuditElementList"/>
+            <element maxOccurs="1" minOccurs="0" ref="sltns:Payload"/>
+			<element maxOccurs="1" minOccurs="0" ref="sltns:PayloadText"/>
+            <element maxOccurs="1" minOccurs="0" ref="sltns:EventTimestamp"/>
+			<element maxOccurs="1" minOccurs="0" ref="tns:PreviousEventTimeStamp"/>
+		</sequence>
+	</complexType>
+	
+
+</schema>

@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: LIB_REFDATA_Siebel_Suppressions Module
+Bundle-SymbolicName: LIB_REFDATA_Siebel_Suppressions
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: TIBCO Software Inc.
+TIBCO-BW-SharedModule: META-INF/module.bwm
+TIBCO-BW-ModuleSharedVariables: META-INF/module.msv
+Require-Capability: com.tibco.bw.model; filter:="(name=bwext)",
+ com.tibco.bw.module; filter:="(&(name=LIB_SiebelCommon)(version=1.0.0))",
+ com.tibco.bw.palette; filter:="(name=bw.generalactivities)",
+ com.tibco.bw.palette; filter:="(name=bw.jdbc)",
+ com.tibco.bw.sharedresource.model; filter:="(name=bw.jdbc)"
+Provide-Capability: com.tibco.bw.module; name="LIB_REFDATA_Siebel_Suppressions"; version:Version="1.0.0",
+ com.tibco.bw.wsdls; ns="http://cruk.org/tibco/2016/siebel/reference/suppressions",
+ com.tibco.bw.wsdls; ns="http://cruk.org/tibco/2016/wsdl/suppressions",
+ com.tibco.bw.wsdls; ns="http://cruk.org/tibco/2016/wsdl/suppressions2",
+ com.tibco.bw.schemas; ns="http://cruk.org/tibco/2016/get/siebelsuppressions",
+ com.tibco.bw.schemas; ns="http://cruk.org/tibco/2016/set/siebelsuppressions",
+ com.tibco.bw.schemas; ns="http://cruk.org/tibco/2016/siebel/lstofval",
+ com.tibco.bw.processes; name="org.cruk.lib.Siebel.Suppressions",
+ com.tibco.bw.resources; name="org.cruk.lib.Siebel.Suppressions"
+TIBCO-BW-ConfigProfile: META-INF/default.substvar
+TIBCO-BW-JobSharedVariables: META-INF/module.jsv
+TIBCO-BW-Version: 6.3.3 V23 2016-08-10

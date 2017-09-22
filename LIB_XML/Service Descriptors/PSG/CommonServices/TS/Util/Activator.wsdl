@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions 
+	xmlns:extns="http://www.tibco.com/PSG/CommonServices/Data/Message/Internal/Activator" 
+	xmlns:tns="http://www.tibco.com/PSG/CommonServices/TS/Util/Activator" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	name="Activator" 
+	targetNamespace="http://www.tibco.com/PSG/CommonServices/TS/Util/Activator">
+	
+  <wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import namespace="http://www.tibco.com/PSG/CommonServices/Data/Message/Internal/Activator" schemaLocation="../../../../../Schemas/PSG/CommonServices/Data/Message/Internal/Activator.xsd">
+			</xsd:import>
+        </xsd:schema>
+  </wsdl:types>	
+  
+  <wsdl:message name="ActivatorRequest">
+    <wsdl:part element="extns:ActivatorRequest" name="parameters"/>
+  </wsdl:message>
+  
+  <wsdl:message name="ActivateResponse">
+    <wsdl:part element="extns:ActivatorResponse" name="parameters"/>
+  </wsdl:message>
+  
+  <wsdl:portType name="Activator">
+    <wsdl:operation name="Activate">
+      <wsdl:input message="tns:ActivatorRequest" name="Activateinput"/>
+      <wsdl:output message="tns:ActivateResponse" name="Activateoutput"/>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

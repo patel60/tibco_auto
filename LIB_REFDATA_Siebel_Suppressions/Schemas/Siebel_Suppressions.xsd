@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema elementFormDefault="unqualified" targetNamespace="http://cruk.org/tibco/2016/siebel/lstofval" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions" xmlns:tns="http://cruk.org/tibco/2016/siebel/lstofval" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="siebel_lst_of_channels" type="tns:lstofchannelarray" />
+  <xsd:complexType name="lstofchannelarray">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="supp_pref_code_channel" type="tns:channelBody" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="supp_pref_code_channel" type="tns:channelBody" />
+  <xsd:complexType name="channelBody">
+		<xsd:sequence>
+  			 <xsd:element name="channel" type="xsd:string" maxOccurs="1" />
+  			<xsd:element name="supp_pref_code" type="xsd:string" maxOccurs="1" />
+  		</xsd:sequence>
+ </xsd:complexType>
+ 
+ <xsd:element name="siebel_lst_of_types" type="tns:lstoftypearray" />
+  <xsd:complexType name="lstoftypearray">
+    <xsd:sequence>
+       <xsd:element maxOccurs="unbounded" minOccurs="0" name="supp_pref_code_type" type="tns:typeBody" />
+    </xsd:sequence>
+  </xsd:complexType>
+    <xsd:element name="supp_pref_code_type" type="tns:typeBody" />
+  <xsd:complexType name="typeBody">
+		<xsd:sequence>
+  			 <xsd:element name="type_value" type="xsd:string" maxOccurs="1" />
+  			<xsd:element name="supp_pref_code" type="xsd:string" maxOccurs="1" />
+  		</xsd:sequence>
+ </xsd:complexType>
+ </xsd:schema>

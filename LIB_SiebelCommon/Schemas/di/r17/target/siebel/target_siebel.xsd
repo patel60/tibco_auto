@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.cancerresearchuk.org/di/r17/target/siebel" xmlns:xsdLocal="http://www.cancerresearchuk.org/di/r17/target/siebel" attributeFormDefault="unqualified" elementFormDefault="qualified" 
+><xsd:annotation
+><xsd:documentation
+>Copyright (C) 2001-2004 Siebel Systems, Inc. All rights reserved. Siebel XSD Generation</xsd:documentation
+></xsd:annotation
+><xsd:element name="SiebelMessage" type="xsdLocal:SiebelMessage" 
+/><xsd:complexType name="SiebelMessage"
+><xsd:sequence
+><xsd:element name="supporter" type="xsdLocal:supporter" minOccurs="0" maxOccurs="1" 
+/></xsd:sequence
+><xsd:attribute name="MessageId" type="xsd:string" 
+/><xsd:attribute name="MessageType" type="xsd:string" 
+/><xsd:attribute name="IntObjectName" type="xsd:string" 
+/><xsd:attribute name="IntObjectFormat" type="xsd:string" 
+/></xsd:complexType
+><xsd:complexType name="supporter"
+><xsd:sequence
+><xsd:element name="dateOfBirth" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="forename" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="gender" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="initial" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="startDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="source" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="statusCode" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="statusDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="suffix" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="supporterURN" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="surname" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="title" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="lsdFlag" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="nonTaxPayerFlag" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="nonTaxPayerStartDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="dateOfDeath" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="deathNotificationDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="maritalStatus" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="contactKeyPrefix" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="contactKeyValue" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="preferredName" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="middleName" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="listOfExternalReference" type="xsdLocal:listOfExternalReference" minOccurs="0" maxOccurs="1"
+/><xsd:element name="registrationId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="registrationReference" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="reservationId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="reservationStatus" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="oldRegistrationId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="listOfAddress" type="xsdLocal:listOfAddress" minOccurs="0" maxOccurs="1"
+/><xsd:element name="listOfContactInfo-Phone" type="xsdLocal:listOfContactInfo-Phone" minOccurs="0" maxOccurs="1"
+/><xsd:element name="listOfContactInfo-Email" type="xsdLocal:listOfContactInfo-Email" minOccurs="0" maxOccurs="1"
+/><xsd:element name="listOfContactInfo-Mobile" type="xsdLocal:listOfContactInfo-Mobile" minOccurs="0" maxOccurs="1"
+/><xsd:element name="listOfDonations" type="xsdLocal:listOfDonations" minOccurs="0" maxOccurs="1"
+/><xsd:element name="listOfGiftAidDeclaration" type="xsdLocal:listOfGiftAidDeclaration" minOccurs="0" maxOccurs="1"
+/><xsd:element name="listOfDirectDebit" type="xsdLocal:listOfDirectDebit" minOccurs="0" maxOccurs="1"
+/><xsd:element name="listOfSuppressionsPreferences" type="xsdLocal:listOfSuppressionsPreferences" minOccurs="0" maxOccurs="1"
+/><xsd:element name="listOfCampaignMembership" type="xsdLocal:listOfCampaignMembership" minOccurs="0" maxOccurs="1"
+/><xsd:element name="listOfMailingActivities" type="xsdLocal:listOfMailingActivities" minOccurs="0" maxOccurs="1"
+/><xsd:element name="listOfEventRegistration" type="xsdLocal:listOfEventRegistration" minOccurs="0" maxOccurs="1"
+/><xsd:element name="listOfStandingOrders" type="xsdLocal:listOfStandingOrders" minOccurs="0" maxOccurs="1"
+/><xsd:element name="listOfProfilingInfo" type="xsdLocal:listOfProfilingInfo" minOccurs="0" maxOccurs="1"
+/><xsd:element name="listOfOpportunity" type="xsdLocal:listOfOpportunity" minOccurs="0" maxOccurs="1"
+/><xsd:element name="listOfFundraisingActivity" type="xsdLocal:listOfFundraisingActivity" minOccurs="0" maxOccurs="1"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="listOfExternalReference"
+><xsd:sequence
+><xsd:element name="externalReference" type="xsdLocal:externalReference" minOccurs="0" maxOccurs="unbounded"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="externalReference"
+><xsd:sequence
+><xsd:element name="dataSourceCode" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="externalReference" type="xsd:string" minOccurs="0" maxOccurs="1"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="listOfAddress"
+><xsd:sequence
+><xsd:element name="address" type="xsdLocal:address" minOccurs="0" maxOccurs="unbounded"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="address"
+><xsd:sequence
+><xsd:element name="addressLine1" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="addressLine2" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="addressLine3" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="addressLine4" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="addressType" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="cherishedAddressHouseName" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="city" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="country" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="county" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="postalCode" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="primary" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="startDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="addressName" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="addressDoctorMatchCode" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="addressDoctorStatus" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="addressDoctorResult" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="addressDoctorMatchScore" type="xsd:string" minOccurs="0" maxOccurs="1"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="listOfContactInfo-Phone"
+><xsd:sequence
+><xsd:element name="contactInfo-Phone" type="xsdLocal:contactInfo-Phone" minOccurs="0" maxOccurs="unbounded"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="contactInfo-Phone"
+><xsd:sequence
+><xsd:element name="identifier" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="primary" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="type" type="xsd:string" minOccurs="0" maxOccurs="1"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="listOfContactInfo-Email"
+><xsd:sequence
+><xsd:element name="contactInfo-Email" type="xsdLocal:contactInfo-Email" minOccurs="0" maxOccurs="unbounded"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="contactInfo-Email"
+><xsd:sequence
+><xsd:element name="identifier" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="primary" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="type" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="invalid" type="xsd:string" minOccurs="0" maxOccurs="1"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="listOfContactInfo-Mobile"
+><xsd:sequence
+><xsd:element name="contactInfo-Mobile" type="xsdLocal:contactInfo-Mobile" minOccurs="0" maxOccurs="unbounded"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="contactInfo-Mobile"
+><xsd:sequence
+><xsd:element name="identifier" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="primary" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="type" type="xsd:string" minOccurs="0" maxOccurs="1"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="listOfDonations"
+><xsd:sequence
+><xsd:element name="donations" type="xsdLocal:donations" minOccurs="0" maxOccurs="unbounded"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="donations"
+><xsd:sequence
+><xsd:element name="amount" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="bankAccountCode-CRUK" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="dataSource" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="dateReceived" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="donationType" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="eventCode" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="excludefromAgresso" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="financialBatchNumber" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="financialPaymentReference" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="letterCode" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="resCode" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="paymentMethod" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="paymentStatus" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="personalGiftAid" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="reasonNotGiftAid" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="product" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="source" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="thankingStatus" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="webPageId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="originatorPaymentID" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="toBeGiftAided" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="letterCodeGAD" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="methodGAD" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="motivation" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="inMemoryName" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="celebrantDataSource" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="celebrantExternalReference" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="paymentProviderTransactionId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="gadType" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="pointOfEntry" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="mobileOperator" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="keyword" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="shortCode" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="smsToCompletedDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="dateTimeReceived" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="fundraisingActivityDataSource" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="fundraisingActivityID" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="uniqueId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="registrationId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="dotsPaymentId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="cardSchemeType" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="orderReference" type="xsd:string" minOccurs="0" maxOccurs="1"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="listOfGiftAidDeclaration"
+><xsd:sequence
+><xsd:element name="giftAidDeclaration" type="xsdLocal:giftAidDeclaration" minOccurs="0" maxOccurs="unbounded"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="giftAidDeclaration"
+><xsd:sequence
+><xsd:element name="confirmedOn" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="declarationDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="letterCode" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="method" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="reference" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="source" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="startDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="status" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="gadType" type="xsd:string" minOccurs="0" maxOccurs="1"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="listOfDirectDebit"
+><xsd:sequence
+><xsd:element name="directDebit" type="xsdLocal:directDebit" minOccurs="0" maxOccurs="unbounded"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="directDebit"
+><xsd:sequence
+><xsd:element name="accountName" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="amount" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="bankAccountNumber" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="bankSortCode" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="bankAccountCode-CRUK" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="resCode" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="frequency" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="instructionType" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="product" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="reference" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="source" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="paymentDay" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="startDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="status" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="toBeGiftAided" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="letterCodeGAD" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="methodGAD" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="motivation" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="inMemoryName" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="dataSource" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="gadType" type="xsd:string" minOccurs="0" maxOccurs="1"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="listOfSuppressionsPreferences"
+><xsd:sequence
+><xsd:element name="suppressionsPreferences" type="xsdLocal:suppressionsPreferences" minOccurs="0" maxOccurs="unbounded"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="suppressionsPreferences"
+><xsd:sequence
+><xsd:element name="channel" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="endDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="startDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="suppressionPreferenceCode" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="type" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="source" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="id" type="xsd:string" minOccurs="0" maxOccurs="1"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="listOfCampaignMembership"
+><xsd:sequence
+><xsd:element name="campaignMembership" type="xsdLocal:campaignMembership" minOccurs="0" maxOccurs="unbounded"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="campaignMembership"
+><xsd:sequence
+><xsd:element name="campaignCode" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="contactedOn" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="outcome" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="versionCode" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="campaignRecipientToken" type="xsd:string" minOccurs="0" maxOccurs="1"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="listOfMailingActivities"
+><xsd:sequence
+><xsd:element name="mailingActivities" type="xsdLocal:mailingActivities" minOccurs="0" maxOccurs="unbounded"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="mailingActivities"
+><xsd:sequence
+><xsd:element name="category" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="completedDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="description" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="done" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="endDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="letterCode" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="owner" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="startDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="status" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="type" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="originatorActivityID" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="comments" type="xsd:string" minOccurs="0" maxOccurs="1"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="listOfEventRegistration"
+><xsd:sequence
+><xsd:element name="eventRegistration" type="xsdLocal:eventRegistration" minOccurs="0" maxOccurs="unbounded"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="eventRegistration"
+><xsd:sequence
+><xsd:element name="stagingId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="eventCode" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="entryType" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="entryFeeStatus" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="cancerType" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="fundraisingPageId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="fundraisingPageType" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="fundraisingPageUrl" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="howHeardAbout" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="inviteSource" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="motivation" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="participationType" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="placeType" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="pledgeAmount" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="registered" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="registrationStatus" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="supporterRegistrationType" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="survivorshipActivities" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="runningNumber" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="groupName" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="groupRole" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="emergencyContactName" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="emergencyContactNumber" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="channel" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="source" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="registrationNumber" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="fulfilmentNote" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="dataSource" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="registrationId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="registrationReference" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="reservationId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="reservationStatus" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="dataSourceRegistrationId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="oldRegistrationNumber" type="xsd:string" minOccurs="0" maxOccurs="1"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="listOfStandingOrders"
+><xsd:sequence
+><xsd:element name="standingOrders" type="xsdLocal:standingOrders" minOccurs="0" maxOccurs="unbounded"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="standingOrders"
+><xsd:sequence
+><xsd:element name="stagingId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="amount" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="accountName" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="bankSortCode" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="bankAccountNumber" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="crukBankAccountCode" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="frequency" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="product" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="reference" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="source" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="startDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="dataSource" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="instructionType" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="status" type="xsd:string" minOccurs="0" maxOccurs="1"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="listOfProfilingInfo"
+><xsd:sequence
+><xsd:element name="profilingInfo" type="xsdLocal:profilingInfo" minOccurs="0" maxOccurs="unbounded"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="profilingInfo"
+><xsd:sequence
+><xsd:element name="stagingId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="codeLevel1" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="codeLevel2" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="source" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="comments" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="startDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="endDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="siebelAttribute1" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="siebelAttribute6" type="xsd:string" minOccurs="0" maxOccurs="1"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="listOfOpportunity"
+><xsd:sequence
+><xsd:element name="opportunity" type="xsdLocal:opportunity" minOccurs="0" maxOccurs="unbounded"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="opportunity"
+><xsd:sequence
+><xsd:element name="stagingId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="department" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="journey" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="stage" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="source" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="startDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="description" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="likelihood" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="currency" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="externalReference" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="dataSource" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="crukReference" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="status" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="endDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="reasonForClosure" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="closureSummary" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="stageStartDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="listOfOpportunityProduct" type="xsdLocal:listOfOpportunityProduct" minOccurs="0" maxOccurs="1"
+/><xsd:element name="listOfOpportunityActivities" type="xsdLocal:listOfOpportunityActivities" minOccurs="0" maxOccurs="1"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="listOfFundraisingActivity"
+><xsd:sequence
+><xsd:element name="fundraisingActivity" type="xsdLocal:fundraisingActivity" minOccurs="0" maxOccurs="unbounded"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="fundraisingActivity"
+><xsd:sequence
+><xsd:element name="activityId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="superType" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="type" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="dataSource" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="dateTime" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="name" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="parentActivityId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="parentActivityDataSource" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="description" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="furtherNotes" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="sponsorshipTarget" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="pledgeAmount" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="fundraisingAs" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="location" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="companyName" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="packType" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="packDeliveryMethod" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="packTShirtSize" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="fundraisingPageId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="fundraisingPageType" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="fundraisingPageUrl" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="motivation" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="howHeard" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="dateRegistered" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="noFollowUp" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="noFollowUpReason" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="resCode" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="inMemory" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="product" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="eventCode" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="eventRegistrationNumber" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="stagingId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="closeDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="status" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="sourceCode" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="groupPageType" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="groupPageMembershipStatus" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="groupName" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="uniqueId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="activityPurpose" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="listOfPackContent" type="xsdLocal:listOfPackContent" minOccurs="0" maxOccurs="1"
+/><xsd:element name="listOfFundraisingActivityQaPair" type="xsdLocal:listOfFundraisingActivityQaPair" minOccurs="0" maxOccurs="1"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="listOfOpportunityProduct"
+><xsd:sequence
+><xsd:element name="opportunityProduct" type="xsdLocal:opportunityProduct" minOccurs="0" maxOccurs="unbounded"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="opportunityProduct"
+><xsd:sequence
+><xsd:element name="stagingId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="productCode" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="targetAmount" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="askAmount" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="askDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="percentage" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="agreedAmount" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="expectedDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="notes" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="resCode" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="motivation" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="inMemoryName" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="crukReference" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="externalReference" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="dataSource" type="xsd:string" minOccurs="0" maxOccurs="1"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="listOfOpportunityActivities"
+><xsd:sequence
+><xsd:element name="opportunityActivities" type="xsdLocal:opportunityActivities" minOccurs="0" maxOccurs="unbounded"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="opportunityActivities"
+><xsd:sequence
+><xsd:element name="externalReference" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="type" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="subType" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="category" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="subCategory" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="description" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="comments" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="completedDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="status" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="startDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="endDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="dataSource" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="crukReference" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="stagingId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="source" type="xsd:string" minOccurs="0" maxOccurs="1"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="listOfPackContent"
+><xsd:sequence
+><xsd:element name="packContent" type="xsdLocal:packContent" minOccurs="0" maxOccurs="unbounded"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="packContent"
+><xsd:sequence
+><xsd:element name="packItemName" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="stagingId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="listOfFundraisingActivityQaPair"
+><xsd:sequence
+><xsd:element name="fundraisingActivityQaPair" type="xsdLocal:fundraisingActivityQaPair" minOccurs="0" maxOccurs="unbounded"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="fundraisingActivityQaPair"
+><xsd:sequence
+><xsd:element name="question" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="answer" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="stagingId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/></xsd:sequence
+></xsd:complexType
+></xsd:schema
+>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jndi:namedResource xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jms="http://xsd.tns.tibco.com/bw/models/sharedresource/jms" xmlns:jndi="http://xsd.tns.tibco.com/amf/models/sharedresource/jndi" xmi:id="_wGSH8XgNEeWitKujS32-WQ" name="services.ts.util.systemerrorhandler.sub.JNDIClient-ESB-AUDIT" type="jms:JNDIConnection">
+  <jndi:configuration xsi:type="jms:JNDIConnectionConfiguration" xmi:id="_wGSvAHgNEeWitKujS32-WQ">
+    <substitutionBindings xmi:id="_ocvHMHgOEeWitKujS32-WQ" template="initialContextFactory" propName="/resources/services.ts.util.systemerrorhandler.sub/Client-ESB-AUDIT/jndi.context.factory"/>
+    <substitutionBindings xmi:id="_pbt38HgOEeWitKujS32-WQ" template="providerUrl" propName="/resources/services.ts.util.systemerrorhandler.sub/Client-ESB-AUDIT/jndi.url"/>
+    <userCredentials xmi:id="_x5ubgHgNEeWitKujS32-WQ">
+      <substitutionBindings xmi:id="_qqKBAHgOEeWitKujS32-WQ" template="username" propName="/resources/services.ts.util.systemerrorhandler.sub/Client-ESB-AUDIT/jndi.username"/>
+      <substitutionBindings xmi:id="_sa_FcHgOEeWitKujS32-WQ" template="password" propName="/resources/services.ts.util.systemerrorhandler.sub/Client-ESB-AUDIT/jndi.password"/>
+    </userCredentials>
+  </jndi:configuration>
+</jndi:namedResource>

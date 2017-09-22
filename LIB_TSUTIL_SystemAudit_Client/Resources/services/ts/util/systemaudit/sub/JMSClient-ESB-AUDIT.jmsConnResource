@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jndi:namedResource xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jms="http://xsd.tns.tibco.com/bw/models/sharedresource/jms" xmlns:jndi="http://xsd.tns.tibco.com/amf/models/sharedresource/jndi" xmi:id="_1UcO4XgNEeWitKujS32-WQ" name="services.ts.util.systemaudit.sub.JMSClient-ESB-AUDIT" type="jms:JMSConnectionFactory">
+  <jndi:reference xmi:id="_1UddAHgNEeWitKujS32-WQ" key="jndiConnectionJNDIName" type="jms:JNDIConnection" value="services.ts.util.systemaudit.sub.JNDIClient-ESB-AUDIT"/>
+  <jndi:configuration xsi:type="jms:JNDIConnectionFactory" xmi:id="_1UddAXgNEeWitKujS32-WQ" factoryType="Queue/Topic">
+    <substitutionBindings xmi:id="_uR4VoHgOEeWitKujS32-WQ" template="jndiName" propName="/resources/services.ts.util.systemaudit.sub/Client-ESB-AUDIT/queue.connection.factory"/>
+    <substitutionBindings xmi:id="_vJUT8HgOEeWitKujS32-WQ" template="topicFactoryJNDIName" propName="/resources/services.ts.util.systemaudit.sub/Client-ESB-AUDIT/topic.connection.factory"/>
+    <userCredentials xmi:id="_xADMEHgOEeWitKujS32-WQ">
+      <substitutionBindings xmi:id="_xczZgHgOEeWitKujS32-WQ" template="username" propName="/resources/services.ts.util.systemaudit.sub/Client-ESB-AUDIT/username"/>
+      <substitutionBindings xmi:id="_xoUF8HgOEeWitKujS32-WQ" template="password" propName="/resources/services.ts.util.systemaudit.sub/Client-ESB-AUDIT/password"/>
+    </userCredentials>
+  </jndi:configuration>
+</jndi:namedResource>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://cruk.org/tibco/2016/get/siebelsuppressions" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sib="http://cruk.org/tibco/2016/siebel/lstofval" targetNamespace="http://cruk.org/tibco/2016/get/siebelsuppressions" elementFormDefault="unqualified">
+	<xs:import namespace="http://cruk.org/tibco/2016/siebel/lstofval" schemaLocation="../Schemas/Siebel_Suppressions.xsd"/>
+	<xs:element name="get_suppressionsRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="in_supp_code" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="get_suppressionsResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="out_channel" type="xs:string"/>
+				<xs:element name="out_type" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

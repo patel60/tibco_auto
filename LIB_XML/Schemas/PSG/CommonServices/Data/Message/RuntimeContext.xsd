@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+	targetNamespace="http://www.tibco.com/PSG/CommonServices/Data/Message/RuntimeContext"  	 
+	xmlns:tns="http://www.tibco.com/PSG/CommonServices/Data/Message/RuntimeContext"
+	elementFormDefault="qualified">
+	
+	<!-- Imports -->
+	
+	<!-- Elements -->
+	<element name="RuntimeContext" type="tns:RuntimeContextType"/>
+	<element name="ServiceName" type="string"/>
+	<element name="Application" type="string"/>
+	<element name="AppNode" type="string"/>
+	<element name="Hostname" type="string"/>
+	
+	<!-- Complex Types -->
+	<complexType name="RuntimeContextType">
+		<sequence>
+			<element ref="tns:ServiceName"/>
+			<element ref="tns:Application"/>
+			<element ref="tns:AppNode"/>
+			<element ref="tns:Hostname"/>
+		</sequence>
+	</complexType>
+	
+</schema>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:bwp="http://www.tibco.com/PSG/CommonServices/Data/Message/Internal/ValidationError"
+	xmlns:head="http://www.tibco.com/PSG/CommonServices/Data/Message/MessageHeader.2" 
+	xmlns:com="http://www.tibco.com/PSG/CommonServices/Data/Common"
+	targetNamespace="http://www.tibco.com/PSG/CommonServices/Data/Message/Internal/ValidationError" 
+	elementFormDefault="qualified"> 
+	
+	<!-- Elements -->
+	<xsd:element name="ValidationErrors" type="bwp:ValidationErrorsType"/>
+	
+	<!--  Complex Types-->
+	<xsd:complexType name="ValidationErrorsType">
+		<xsd:sequence>
+			<xsd:element name="ValidationError" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

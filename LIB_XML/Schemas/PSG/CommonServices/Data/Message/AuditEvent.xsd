@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<schema 
+	xmlns="http://www.w3.org/2001/XMLSchema" 
+	xmlns:com="http://www.tibco.com/PSG/CommonServices/Data/Message/Common" 
+	xmlns:rctx="http://www.tibco.com/PSG/CommonServices/Data/Message/RuntimeContext" 
+	xmlns:tns="http://www.tibco.com/PSG/CommonServices/Data/Message/AuditEvent" 
+	elementFormDefault="qualified" 
+	targetNamespace="http://www.tibco.com/PSG/CommonServices/Data/Message/AuditEvent">
+	
+	<import namespace="http://www.tibco.com/PSG/CommonServices/Data/Message/Common" schemaLocation="Common.xsd"/>
+	<import namespace="http://www.tibco.com/PSG/CommonServices/Data/Message/RuntimeContext" schemaLocation="RuntimeContext.xsd"/>
+	
+	<element name="AuditEvent" type="tns:AuditEventType"/>
+	<element name="AuditEventList" type="tns:AuditEventListType"/>
+	<element name="ResponseTime" type="long"/>
+	
+	<complexType name="AuditEventListType">
+		<sequence>
+			<element maxOccurs="unbounded" minOccurs="1" ref="tns:AuditEvent"/>
+		</sequence>
+	</complexType>
+	<complexType name="AuditEventType">
+		<sequence>
+			<element ref="com:CorrelationId"/>
+			<element ref="tns:EventId"/>
+			<element ref="tns:EventTimestamp"/>
+			<element ref="tns:EventType"/>
+			<element maxOccurs="1" minOccurs="0" ref="tns:Message"/>
+			<element ref="rctx:RuntimeContext"/>
+			<element maxOccurs="1" minOccurs="0" ref="tns:AuditElementList"/>
+			<element minOccurs="0" ref="tns:Payload"/>
+			<element minOccurs="0" ref="tns:PayloadText"/>
+			<element ref="tns:ResponseTime"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="AuditElementType">
+		<sequence>
+			<element ref="tns:Name"/>
+			<element ref="tns:Value"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="AuditElementListType">
+		<sequence>
+			<element maxOccurs="unbounded" minOccurs="1" ref="tns:AuditElement"/>
+		</sequence>
+	</complexType>
+	
+	<element name="AuditElement" type="tns:AuditElementType"/>
+	
+	<element name="AuditElementList" type="tns:AuditElementListType"/>
+	<element name="Message" type="string"/>
+	<element name="EventType" type="string"/>
+	<element name="Payload" type="com:PayloadType"/>
+	<element name="PayloadText" type="com:PayloadTextType"/>
+	<element name="EventTimestamp" type="dateTime"/>
+	<element name="EventId" type="string"/>
+	<element name="Name" type="string"/>
+	<element name="Value" type="string"/>
+
+</schema>

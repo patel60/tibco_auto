@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:head="http://www.tibco.com/PSG/CommonServices/Data/Message/MessageHeader" xmlns:tns="http://www.tibco.com/PSG/CommonServices/Data/Message/Fault.2" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.tibco.com/PSG/CommonServices/Data/Message/Fault.2">
+	
+	<!-- Imports -->
+	<xsd:import namespace="http://www.tibco.com/PSG/CommonServices/Data/Message/MessageHeader" schemaLocation="MessageHeader.xsd"/>
+	
+	<!-- Elements -->
+	<xsd:element name="Application" type="xsd:string"/>
+	<xsd:element name="ExceptionDescription" type="xsd:string"/>
+	<xsd:element name="ExceptionDetails" type="xsd:string"/>
+	<xsd:element name="ExceptionId" type="xsd:string"/>
+	<xsd:element name="ExceptionName" type="xsd:string"/>
+	<xsd:element name="ExceptionTimestamp" type="xsd:dateTime"/>
+	<xsd:element name="Fault" type="tns:FaultType"/>
+	<xsd:element name="FaultContext" type="tns:FaultContextType"/>
+	<xsd:element name="FaultHeader" type="head:ResponseHeaderType"/>
+	<xsd:element name="Hostname" type="xsd:string"/>
+	<xsd:element name="Instance" type="xsd:string"/>
+	<xsd:element name="RootException" type="tns:RootExceptionType"/>
+	<xsd:element name="Severity" type="xsd:string"/>
+	
+	<xsd:element name="ValidationFault" type="tns:FaultType"/>
+	<xsd:element name="BackEndFault" type="tns:FaultType"/>
+	<xsd:element name="TimeoutFault" type="tns:FaultType"/>
+	<xsd:element name="AuthenticationFault" type="tns:FaultType"/>
+	
+	<!-- Complex Types -->
+	<xsd:complexType name="FaultType">
+		<xsd:sequence>
+			<xsd:element minOccurs="1" ref="tns:FaultHeader"/>
+			<xsd:element minOccurs="0" ref="tns:Severity"/>
+			<xsd:element minOccurs="1" ref="tns:ExceptionId"/>
+			<xsd:element ref="tns:ExceptionTimestamp"/>
+			<xsd:element minOccurs="0" ref="tns:ExceptionName"/>
+			<xsd:element minOccurs="0" ref="tns:ExceptionDescription"/>
+			<xsd:element minOccurs="0" ref="tns:ExceptionDetails"/>
+			<xsd:element minOccurs="1" ref="tns:RootException"/>
+			<xsd:element minOccurs="0" ref="tns:FaultContext"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RootExceptionType">
+		<xsd:sequence>
+			<xsd:element minOccurs="1" ref="tns:ExceptionId"/>
+			<xsd:element minOccurs="0" ref="tns:ExceptionName"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="FaultContextType">
+		<xsd:sequence>
+			<xsd:element minOccurs="0" ref="tns:Hostname"/>
+			<xsd:element minOccurs="0" ref="tns:Application"/>
+			<xsd:element minOccurs="0" ref="tns:Instance"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

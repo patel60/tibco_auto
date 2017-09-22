@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2016 rel. 2 sp1 (x64) (http://www.altova.com) by Graeme Bell (Cancer Research UK) -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsdLocal="http://www.cancerresearchuk.org/giftAid/claimSubmission/target/siebel"
+	targetNamespace="http://www.cancerresearchuk.org/giftAid/claimSubmission/target/siebel" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:annotation>
+		<xsd:documentation>Copyright (C) 2001-2004 Siebel Systems, Inc. All
+			rights reserved. Siebel XSD Generation
+		</xsd:documentation>
+	</xsd:annotation>
+	<xsd:element name="SiebelMessage" type="xsdLocal:SiebelMessage" />
+	<xsd:complexType name="SiebelMessage">
+		<xsd:sequence>
+			<xsd:element name="claimSubmission" type="xsdLocal:claimSubmission" minOccurs="0" maxOccurs="1" />
+		</xsd:sequence>
+		<xsd:attribute name="MessageId" type="xsd:string" />
+		<xsd:attribute name="MessageType" type="xsd:string" />
+		<xsd:attribute name="IntObjectName" type="xsd:string" />
+		<xsd:attribute name="IntObjectFormat" type="xsd:string" />
+	</xsd:complexType>
+	<xsd:complexType name="claimSubmission">
+		<xsd:sequence>
+			<xsd:element name="submissionNumber" type="xsd:string" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="correlationID" type="xsd:string" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="pollingInterval" type="xsd:string" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="receivedDate" type="xsd:string" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="submissionStatus" type="xsd:string" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="statusDescription" type="xsd:string" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="listOfErrors" type="xsdLocal:listOfErrors" minOccurs="0" maxOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="listOfErrors">
+		<xsd:sequence>
+			<xsd:element name="error" type="xsdLocal:error" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="error">
+		<xsd:sequence>
+			<xsd:element name="identifier" type="xsd:string" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="type" type="xsd:string" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="code" type="xsd:string" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="text" type="xsd:string" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="location" type="xsd:string" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="lineNumber" type="xsd:string" maxOccurs="1" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

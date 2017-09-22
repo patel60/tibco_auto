@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.siebel.com/xml/SRM%20DI%20Fundraising%20Activity%20-%20Int_01" xmlns:xsdLocal="http://www.siebel.com/xml/SRM%20DI%20Fundraising%20Activity%20-%20Int_01" attributeFormDefault="unqualified" elementFormDefault="qualified" 
+><xsd:annotation
+><xsd:documentation
+>Copyright (C) 2001-2004 Siebel Systems, Inc. All rights reserved. Siebel XSD Generation</xsd:documentation
+></xsd:annotation
+><xsd:element name="SiebelMessage" type="xsdLocal:SiebelMessage" 
+/><xsd:complexType name="SiebelMessage"
+><xsd:sequence
+><xsd:element name="ListOfSrmDiFundraisingActivity-Int" type="xsdLocal:ListOfSrmDiFundraisingActivity-Int" minOccurs="0" maxOccurs="1" 
+/></xsd:sequence
+><xsd:attribute name="MessageId" type="xsd:string" 
+/><xsd:attribute name="MessageType" type="xsd:string" 
+/><xsd:attribute name="IntObjectName" type="xsd:string" 
+/><xsd:attribute name="IntObjectFormat" type="xsd:string" 
+/></xsd:complexType
+><xsd:complexType name="ListOfSrmDiFundraisingActivity-Int"
+><xsd:sequence
+><xsd:element name="SrmVolunteerFundraising" type="xsdLocal:SrmVolunteerFundraising" minOccurs="0" maxOccurs="unbounded"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="SrmVolunteerFundraising"
+><xsd:sequence
+><xsd:element name="Searchspec" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="ActivityEventNumber" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="ActivityEventRegistrationNumber" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="ActivityHowHeard" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="ActivityId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="ActivityInMemory" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="ActivityLocation" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="ActivityMotivation" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="ActivityName" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="ActivityOwnerURN" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="ActivityProduct" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="ActivityRestrictionCode" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="ActivitySource" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="ActivitySuperType" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="ActivityType" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="Activitydate" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="Amounthopingtoraise" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="FundraisingActivity" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="FurtherInformation" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="PackDeliveryMethod" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="PackType" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="ParentActivityId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SRMActivityManagementId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SRMActivityParticipantReference" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SRMDataSource" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SRMDoNotChaseFlag" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SRMDoNotChaseReason" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SRMFundraisingActivityPurpose" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SRMFundraisingAs" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SRMProposition" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SRMPropositionCode" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SRMSubProposition" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SRMSubPropositionCode" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SRMWebPageID" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SRMWebPageType" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SRMWebPageURL" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="ListOfSrmFundraisingActivityQuestionAndAnswer" type="xsdLocal:ListOfSrmFundraisingActivityQuestionAndAnswer" minOccurs="0" maxOccurs="1"
+/><xsd:element name="ListOfSrmFundraisingRegistration" type="xsdLocal:ListOfSrmFundraisingRegistration" minOccurs="0" maxOccurs="1"
+/><xsd:element name="ListOfSRMVolunteerFundraising_SRMVolunteerRegPack" type="xsdLocal:ListOfSRMVolunteerFundraising_SRMVolunteerRegPack" minOccurs="0" maxOccurs="1"
+/></xsd:sequence
+><xsd:attribute name="Operation" type="xsd:string"
+/></xsd:complexType
+><xsd:complexType name="ListOfSrmFundraisingActivityQuestionAndAnswer"
+><xsd:sequence
+><xsd:element name="SrmFundraisingActivityQuestionAndAnswer" type="xsdLocal:SrmFundraisingActivityQuestionAndAnswer" minOccurs="0" maxOccurs="unbounded"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="SrmFundraisingActivityQuestionAndAnswer"
+><xsd:sequence
+><xsd:element name="Id" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="Searchspec" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="Answer" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="IntegrationId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="ParentFundraisingActivityId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="Question" type="xsd:string" minOccurs="1" maxOccurs="1"
+/><xsd:element name="Type" type="xsd:string" minOccurs="0" maxOccurs="1"
+/></xsd:sequence
+><xsd:attribute name="Operation" type="xsd:string"
+/></xsd:complexType
+><xsd:complexType name="ListOfSrmFundraisingRegistration"
+><xsd:sequence
+><xsd:element name="SrmFundraisingRegistration" type="xsdLocal:SrmFundraisingRegistration" minOccurs="0" maxOccurs="unbounded"
+/></xsd:sequence
+></xsd:complexType
+><xsd:complexType name="SrmFundraisingRegistration"
+><xsd:sequence
+><xsd:element name="Id" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="Created" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="CreatedBy" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="Updated" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="UpdatedBy" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="ConflictId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="ModId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="Searchspec" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="ActivityId2" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="CompanyName" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="Fundraisingas" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="HowHeardAbout" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="Motivation" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="OrganisationId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="OrganisationName" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="OrganisationPrimaryAddressId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="OrganisationPrimaryAddressPostalCode" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="OrganisationPrimaryEmail" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="OrganisationPrimaryMobile" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="OrganisationPrimaryPhone" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="OrganisationURN" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="RecordType" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="RegistrationDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="RegistrationNumber" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SRMCanvasserFirstname" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SRMCanvasserLastname" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SRMCanvasserLogin" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SRMCreatedbyBCIndicator" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SRMDataSource" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SRMOrganisationContactFirstName" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SRMOrganisationContactLastName" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SRMOrganisationContactTitle" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SRMSupporterIdNoPick" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SRMSupporterURN" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="Status" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SupporterBirthDate" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SupporterFirstName" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SupporterId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SupporterLastName" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SupporterMF" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SupporterPrimaryAddressPostalCode" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SupporterPrimaryAlternateEmailId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SupporterPrimaryAlternatePhoneId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SupporterPrimaryEmail" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SupporterPrimaryMobile" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SupporterPrimaryPersonalAddressId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SupporterPrimaryPhone" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SupporterPrimarySMSNumberId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SupporterURN" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="SupporterYearofBirth" type="xsd:string" minOccurs="0" maxOccurs="1"
+/></xsd:sequence
+><xsd:attribute name="Operation" type="xsd:string"
+/></xsd:complexType
+><xsd:complexType name="ListOfSRMVolunteerFundraising_SRMVolunteerRegPack"
+><xsd:sequence
+><xsd:element name="SRMVolunteerFundraising_SRMVolunteerRegPack" type="xsdLocal:SRMVolunteerFundraising_SRMVolunteerRegPack" minOccurs="0" maxOccurs="unbounded"
+/></xsd:sequence
+></xsd:complexType
+>
+	<xsd:complexType
+		name="SRMVolunteerFundraising_SRMVolunteerRegPack">
+		<xsd:sequence>
+			<xsd:element name="RegistrationPack" type="xsd:string"
+				minOccurs="1" maxOccurs="1" />
+		</xsd:sequence>
+		<xsd:attribute name="Operation" type="xsd:string"></xsd:attribute>
+	</xsd:complexType></xsd:schema
+>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema 
+	xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.tibco.com/PSG/CommonServices/Data/Message/Audit"
+	xmlns:tns="http://www.tibco.com/PSG/CommonServices/Data/Message/Audit"
+	elementFormDefault="qualified">
+
+	<!-- Elements -->
+	<element name="AuditOptions" type="tns:AuditOptionsType" />
+	<element name="AuditEnabled" type="boolean" />
+	<element name="AuditPayloadEnabled" type="boolean" />
+	<element name="AuditCacheEnabled" type="boolean" default="true" />
+
+	<!-- Complex Types -->
+	<complexType name="AuditOptionsType">
+		<sequence>
+			<element ref="tns:AuditEnabled" minOccurs="0" />
+			<element ref="tns:AuditPayloadEnabled" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+</schema>

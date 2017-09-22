@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.cancerresearchuk.org/2016/di/target/siebel/event" xmlns:xsdLocal="http://www.cancerresearchuk.org/2016/di/target/siebel/event" attributeFormDefault="unqualified" elementFormDefault="qualified" 
+><xsd:annotation
+><xsd:documentation
+>Copyright (C) 2001-2004 Siebel Systems, Inc. All rights reserved. Siebel XSD Generation</xsd:documentation
+></xsd:annotation
+><xsd:element name="SiebelMessage" type="xsdLocal:SiebelMessage" 
+/><xsd:complexType name="SiebelMessage"
+><xsd:sequence
+><xsd:element name="event" type="xsdLocal:event" minOccurs="0" maxOccurs="1" 
+/></xsd:sequence
+><xsd:attribute name="MessageId" type="xsd:string" 
+/><xsd:attribute name="MessageType" type="xsd:string" 
+/><xsd:attribute name="IntObjectName" type="xsd:string" 
+/><xsd:attribute name="IntObjectFormat" type="xsd:string" 
+/></xsd:complexType
+><xsd:complexType name="event"
+>
+	<xsd:sequence>
+		<xsd:element name="ageLimit" type="xsd:string" minOccurs="0"
+			maxOccurs="1" />
+		<xsd:element name="agressoCode" type="xsd:string" minOccurs="0"
+			maxOccurs="1" />
+		<xsd:element name="approvalStatus" type="xsd:string"
+			minOccurs="0" maxOccurs="1" />
+		<xsd:element name="earlyBirdEndDate" type="xsd:string"
+			minOccurs="0" maxOccurs="1" />
+		<xsd:element name="endDate" type="xsd:string" minOccurs="0"
+			maxOccurs="1" />
+		<xsd:element name="endTime" type="xsd:string" minOccurs="0"
+			maxOccurs="1" />
+		<xsd:element name="entranceFee" type="xsd:string" minOccurs="0"
+			maxOccurs="1" />
+		<xsd:element name="code" type="xsd:string" minOccurs="0"
+			maxOccurs="1" />
+		<xsd:element name="cutoffDate" type="xsd:string" minOccurs="0"
+			maxOccurs="1" />
+		<xsd:element name="cutoffTime" type="xsd:string" minOccurs="0"
+			maxOccurs="1" />
+		<xsd:element name="description" type="xsd:string" minOccurs="0"
+			maxOccurs="1" />
+		<xsd:element name="group" type="xsd:string" minOccurs="0"
+			maxOccurs="1" />
+		<xsd:element name="name" type="xsd:string" minOccurs="0"
+			maxOccurs="1" />
+		<xsd:element name="openDate" type="xsd:string" minOccurs="0"
+			maxOccurs="1" />
+		<xsd:element name="openTime" type="xsd:string" minOccurs="0"
+			maxOccurs="1" />
+		<xsd:element name="financialYear" type="xsd:string"
+			minOccurs="0" maxOccurs="1" />
+		<xsd:element name="firstRunningNumber" type="xsd:string"
+			minOccurs="0" maxOccurs="1" />
+		<xsd:element name="latitude" type="xsd:string" minOccurs="0"
+			maxOccurs="1" />
+		<xsd:element name="legacyType" type="xsd:string" minOccurs="0"
+			maxOccurs="1" />
+		<xsd:element name="longitude" type="xsd:string" minOccurs="0"
+			maxOccurs="1" />
+		<xsd:element name="propositionId" type="xsd:string"
+			minOccurs="0" maxOccurs="1" />
+		<xsd:element name="propositionName" type="xsd:string"
+			minOccurs="0" maxOccurs="1" />
+		<xsd:element name="restrictionCode" type="xsd:string"
+			minOccurs="0" maxOccurs="1" />
+		<xsd:element name="startDate" type="xsd:string" minOccurs="0"
+			maxOccurs="1" />
+		<xsd:element name="startTime" type="xsd:string" minOccurs="0"
+			maxOccurs="1" />
+		<xsd:element name="status" type="xsd:string" minOccurs="0"
+			maxOccurs="1" />
+		<xsd:element name="subPropositionId" type="xsd:string"
+			minOccurs="0" maxOccurs="1" />
+		<xsd:element name="subPropositionName" type="xsd:string"
+			minOccurs="0" maxOccurs="1" />
+		<xsd:element name="subType" type="xsd:string" minOccurs="0"
+			maxOccurs="1" />
+		<xsd:element name="type" type="xsd:string" minOccurs="0"
+			maxOccurs="1" />
+		<xsd:element name="dataSource" type="xsd:string" minOccurs="0"
+			maxOccurs="1" />
+		<xsd:element name="dataSourceEventId" type="xsd:string"
+			minOccurs="0" maxOccurs="1" />
+		<xsd:element name="parentEventDataSourceEventId"
+			type="xsd:string" minOccurs="0" maxOccurs="1" />
+		<xsd:element name="parentEventDatasource" type="xsd:string"
+			minOccurs="0" maxOccurs="1" />
+		<xsd:element name="eventSeries" type="xsd:string" minOccurs="0"
+			maxOccurs="1" />
+		<xsd:element name="eventSeriesCode" type="xsd:string"
+			minOccurs="0" maxOccurs="1" />
+		<xsd:element name="postcode" type="xsd:string" minOccurs="0"
+			maxOccurs="1" />
+		<xsd:element name="sequenceNumber" type="xsd:string"
+			minOccurs="0" maxOccurs="1" />
+		<xsd:element name="eventCategory" type="xsd:string"
+			minOccurs="0" maxOccurs="1" />
+		<xsd:element name="url" type="xsd:string" minOccurs="0"
+			maxOccurs="1" />
+		<xsd:element name="cancellationType" type="xsd:string"
+			minOccurs="0" maxOccurs="1" />
+		<xsd:element name="criticalAmendReason" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+	</xsd:sequence></xsd:complexType
+></xsd:schema
+>

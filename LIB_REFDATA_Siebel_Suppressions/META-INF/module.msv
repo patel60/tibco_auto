@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<msv:DocumentRoot xmlns:msv="http://tns.tibco.com/bw/model/core/moduleSV">
+  <moduleSharedVariables>
+    <moduleSharedVariable name="v_Type" type="{http://cruk.org/tibco/2016/siebel/lstofval}siebel_lst_of_types" initialValueMode="none"/>
+    <moduleSharedVariable name="v_Channel" type="{http://cruk.org/tibco/2016/siebel/lstofval}siebel_lst_of_channels" initialValueMode="none"/>
+  </moduleSharedVariables>
+  <import importType="http://www.w3.org/2001/XMLSchema" namespace="http://cruk.org/tibco/2016/siebel/lstofval" location="../Schemas/Siebel_Suppressions.xsd"/>
+</msv:DocumentRoot>

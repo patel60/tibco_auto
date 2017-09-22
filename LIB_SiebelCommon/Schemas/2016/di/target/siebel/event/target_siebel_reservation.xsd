@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.cancerresearchuk.org/2016/di/target/siebel/reservation" xmlns:xsdLocal="http://www.cancerresearchuk.org/2016/di/target/siebel/reservation" attributeFormDefault="unqualified" elementFormDefault="qualified" 
+><xsd:annotation
+><xsd:documentation
+>Copyright (C) 2001-2004 Siebel Systems, Inc. All rights reserved. Siebel XSD Generation</xsd:documentation
+></xsd:annotation
+><xsd:element name="SiebelMessage" type="xsdLocal:SiebelMessage" 
+/><xsd:complexType name="SiebelMessage"
+><xsd:sequence
+><xsd:element name="reservation" type="xsdLocal:reservation" minOccurs="0" maxOccurs="1" 
+/></xsd:sequence
+><xsd:attribute name="MessageId" type="xsd:string" 
+/><xsd:attribute name="MessageType" type="xsd:string" 
+/><xsd:attribute name="IntObjectName" type="xsd:string" 
+/><xsd:attribute name="IntObjectFormat" type="xsd:string" 
+/></xsd:complexType
+><xsd:complexType name="reservation"
+><xsd:sequence
+><xsd:element name="reservationStatus" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="registrationId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/><xsd:element name="reservationId" type="xsd:string" minOccurs="0" maxOccurs="1"
+/></xsd:sequence
+><xsd:attribute name="operation" type="xsd:string"
+/></xsd:complexType
+></xsd:schema
+>

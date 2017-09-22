@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions
+	xmlns:extns="http://www.tibco.com/PSG/CommonServices/Message/TS/Util/sub/SendExceptionEvent"
+	xmlns:tns="http://www.tibco.com/PSG/CommonServices/TS/Util/sub/SendExceptionEvent"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	name="SendExceptionEvent"
+	targetNamespace="http://www.tibco.com/PSG/CommonServices/TS/Util/sub/SendExceptionEvent">
+	
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import
+				namespace="http://www.tibco.com/PSG/CommonServices/Message/TS/Util/sub/SendExceptionEvent" 
+				schemaLocation="../../../../../../Schemas/PSG/CommonServices/Message/TS/Util/sub/SendExceptionEvent.xsd">
+			</xsd:import>
+		</xsd:schema>
+  	</wsdl:types>
+		
+	<wsdl:message name="SendExceptionEventRequest">
+		<wsdl:part element="extns:SendExceptionEventRequest" name="parameters" />
+	</wsdl:message>
+
+	<wsdl:portType name="SendExceptionEvent">
+		<wsdl:operation name="SendExceptionEvent">
+			<wsdl:input message="tns:SendExceptionEventRequest" name="SendExceptionEventinput" />
+		</wsdl:operation>
+	</wsdl:portType>
+</wsdl:definitions>

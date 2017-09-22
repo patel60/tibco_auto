@@ -1,0 +1,1212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpws:process exitOnStandardFault="no"
+    name="org.cruk.lib.Siebel.Suppressions.PopulateSuppressionsService"
+    suppressJoinFailure="yes"
+    targetNamespace="http://cruk.org/tibco/2016/siebel/reference/suppressions"
+    xmlns:bpws="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+    xmlns:info="http://www.tibco.com/bw/process/info"
+    xmlns:ns="http://xmlns.example.com/20161103120014PLT"
+    xmlns:ns0="http://www.tibco.com/pe/EngineTypes"
+    xmlns:ns1="http://cruk.org/tibco/2016/wsdl/suppressions"
+    xmlns:ns2="http://cruk.org/tibco/2016/siebel/reference/suppressions"
+    xmlns:ns3="http://schemas.tibco.com/bw/plugins/basic/6.0/Exceptions"
+    xmlns:ns4="http://tns.tibco.com/bw/palette/internal/accumulateoutput+3ab60622-31c9-4eb4-8259-17f7ffae619e"
+    xmlns:ns5="http://tns.tibco.com/bw/palette/internal/accumulateoutput+95f20542-3202-4881-b3c7-e99a771df9b9"
+    xmlns:ns6="http://www.tibco.com/pe/WriteToLogActivitySchema"
+    xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912"
+    xmlns:sca-bpel="http://docs.oasis-open.org/ns/opencsa/sca-bpel/200801"
+    xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"
+    xmlns:tibprop="http://ns.tibco.com/bw/property"
+    xmlns:tns="http://cruk.org/tibco/2016/get/siebelsuppressions"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsdLocal="http://www.cancerresearchuk.org/di/r17/target/siebel">
+    <tibex:Types>
+        <xs:schema attributeFormDefault="unqualified"
+            elementFormDefault="qualified"
+            targetNamespace="http://www.tibco.com/pe/EngineTypes"
+            xmlns:tns="http://www.tibco.com/pe/EngineTypes" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:complexType block="extension restriction"
+                final="extension restriction" name="ErrorReport">
+                <xs:sequence>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" name="StackTrace" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" name="Msg" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" name="FullClass" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" name="Class" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" name="ProcessStack" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" minOccurs="0" name="MsgCode" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" minOccurs="0" name="Data" type="tns:anydata"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType block="extension restriction"
+                final="extension restriction" name="FaultDetail">
+                <xs:sequence>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" name="ActivityName" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" minOccurs="0" name="Data" type="tns:anydata"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" name="Msg" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" name="MsgCode" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" name="ProcessStack" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" name="StackTrace" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType block="extension restriction"
+                final="extension restriction" name="ProcessContext">
+                <xs:sequence>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" name="JobId" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" name="ProcessInstanceId" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" minOccurs="0"
+                        name="CustomJobId" type="xs:string"/>
+                    <!--xs:element name="RestartedFromCheckpoint" form="unqualified" block="extension restriction substitution" type="xs:boolean"/-->
+                    <!--xs:element minOccurs="0" maxOccurs="unbounded" name="TrackingInfo" form="unqualified" block="extension restriction substitution" type="xs:string"/-->
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType block="extension restriction"
+                final="extension restriction" name="anydata">
+                <xs:sequence>
+                    <xs:any namespace="##any" processContents="lax"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element block="extension restriction substitution"
+                final="extension restriction" name="ErrorReport" type="tns:ErrorReport"/>
+            <xs:element block="extension restriction substitution"
+                final="extension restriction" name="FaultDetail" type="tns:FaultDetail"/>
+            <xs:element block="extension restriction substitution"
+                final="extension restriction" name="ProcessContext" type="tns:ProcessContext"/>
+            <xs:element block="extension restriction substitution"
+                final="extension restriction" name="CorrelationValue" type="xs:string"/>
+        </xs:schema>
+        <schema attributeFormDefault="unqualified"
+            elementFormDefault="unqualified"
+            targetNamespace="http://schemas.tibco.com/bw/pe/plugin/5.0/exceptions"
+            version="" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.tibco.com/bw/pe/plugin/5.0/exceptions">
+            <complexType name="ActivityExceptionType">
+                <sequence>
+                    <element name="msg" type="string"/>
+                    <element minOccurs="0" name="msgCode" type="string"/>
+                </sequence>
+            </complexType>
+            <element name="ActivityException" type="tns:ActivityExceptionType"/>
+            <complexType name="ActivityTimedOutExceptionType">
+                <complexContent>
+                    <extension base="tns:ActivityExceptionType"/>
+                </complexContent>
+            </complexType>
+            <element name="ActivityTimedOutException" type="tns:ActivityTimedOutExceptionType"/>
+        </schema>
+        <xs:schema elementFormDefault="qualified"
+            targetNamespace="http://tns.tibco.com/bw/palette/internal/accumulateoutput+95f20542-3202-4881-b3c7-e99a771df9b9"
+            xmlns:Q1="http://cruk.org/tibco/2016/get/siebelsuppressions"
+            xmlns:tns="http://tns.tibco.com/bw/palette/internal/accumulateoutput+95f20542-3202-4881-b3c7-e99a771df9b9" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:import namespace="http://cruk.org/tibco/2016/get/siebelsuppressions"/>
+            <xs:element name="AccumulatedOutput" type="tns:AccumulatedOutputType"/>
+            <xs:complexType name="AccumulatedOutputType">
+                <xs:sequence maxOccurs="1" minOccurs="0">
+                    <xs:element maxOccurs="unbounded" minOccurs="0" ref="Q1:get_suppressionsResponse"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema attributeFormDefault="unqualified"
+            elementFormDefault="qualified"
+            targetNamespace="http://www.tibco.com/pe/WriteToLogActivitySchema"
+            xmlns:tns="http://www.tibco.com/pe/WriteToLogActivitySchema" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:complexType name="LogParametersType">
+                <xs:sequence>
+                    <xs:element form="unqualified" minOccurs="0"
+                        name="msgCode" type="xs:string"/>
+                    <xs:element form="unqualified" minOccurs="0"
+                        name="loggerName" type="xs:string"/>
+                    <xs:element form="unqualified" minOccurs="0"
+                        name="logLevel" type="xs:string"/>
+                    <xs:element form="unqualified" name="message" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="ActivityInput" type="tns:LogParametersType"/>
+        </xs:schema>
+        <wsdl:definitions
+            targetNamespace="http://xmlns.example.com/20161103120014PLT"
+            xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+            xmlns:ptyp="http://cruk.org/tibco/2016/wsdl/suppressions"
+            xmlns:ptyp2="http://cruk.org/tibco/2016/siebel/reference/suppressions"
+            xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop"
+            xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <plnk:partnerLinkType name="partnerLinkType1">
+                <plnk:role name="use" portType="ptyp:get_Suppressions"/>
+            </plnk:partnerLinkType>
+            <plnk:partnerLinkType name="partnerLinkType">
+                <plnk:role name="use" portType="ptyp2:PopulateSuppressionsService"/>
+            </plnk:partnerLinkType>
+            <plnk:partnerLinkType name="partnerLinkType2">
+                <plnk:role name="use" portType="ptyp2:PopulateSuppressionsService"/>
+            </plnk:partnerLinkType>
+            <wsdl:import namespace="http://cruk.org/tibco/2016/siebel/reference/suppressions"/>
+            <wsdl:import namespace="http://cruk.org/tibco/2016/wsdl/suppressions"/>
+        </wsdl:definitions>
+    </tibex:Types>
+    <tibex:ProcessInfo callable="false" createdBy="ptolani"
+        createdOn="Thu Nov 03 12:00:14 GMT 2016" description=""
+        modifiers="public" productVersion="6.3.3 HF1 V26 2016-10-10"
+        scalable="true" singleton="true" stateless="false" type="IT"/>
+    <tibex:ProcessInterface context="" input="" output=""/>
+    <tibex:ProcessTemplateConfigurations/>
+    <notation:Diagram measurementUnit="Pixel" type="BWProcess"
+        xmlns:bwnotation="http://tns.tibco.com/bw/runtime/BWNotation"
+        xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <children type="2001">
+            <children type="5001">
+                <element href="//0/@process"/>
+            </children>
+            <children type="3001">
+                <styles xsi:type="notation:SortingStyle"/>
+                <styles xsi:type="notation:FilteringStyle"/>
+                <element href="//0/@process"/>
+            </children>
+            <children type="3002">
+                <children type="4008">
+                    <children type="40012">
+                        <element href="//0/@process/@partnerLinks/@children.1"/>
+                    </children>
+                    <children type="3008">
+                        <styles xsi:type="notation:DrawerStyle"/>
+                        <styles xsi:type="notation:SortingStyle"/>
+                        <styles xsi:type="notation:FilteringStyle"/>
+                        <styles xsi:type="bwnotation:BackgroundStyle"/>
+                        <styles xsi:type="bwnotation:ResizingStyle"/>
+                        <element href="//0/@process/@partnerLinks/@children.1"/>
+                    </children>
+                    <children type="4017">
+                        <styles fontName=".SF NS Text" lineColor="0" xsi:type="notation:ShapeStyle"/>
+                        <element href="//0/@process/@partnerLinks/@children.1"/>
+                        <layoutConstraint xsi:type="notation:Bounds"/>
+                    </children>
+                    <children type="4017">
+                        <styles fontName=".SF NS Text" lineColor="0" xsi:type="notation:ShapeStyle"/>
+                        <element href="//0/@process/@partnerLinks/@children.1"/>
+                        <layoutConstraint xsi:type="notation:Bounds"/>
+                    </children>
+                    <children type="4017">
+                        <styles fontName=".SF NS Text" lineColor="0" xsi:type="notation:ShapeStyle"/>
+                        <element href="//0/@process/@partnerLinks/@children.1"/>
+                        <layoutConstraint xsi:type="notation:Bounds"/>
+                    </children>
+                    <children type="4017">
+                        <styles fontName=".SF NS Text" lineColor="0" xsi:type="notation:ShapeStyle"/>
+                        <element href="//0/@process/@partnerLinks/@children.1"/>
+                        <layoutConstraint xsi:type="notation:Bounds"/>
+                    </children>
+                    <styles fontName=".SF NS Text" lineColor="0" xsi:type="notation:ShapeStyle"/>
+                    <styles xsi:type="bwnotation:BackgroundStyle"/>
+                    <styles xsi:type="bwnotation:ResizingStyle"/>
+                    <element href="//0/@process/@partnerLinks/@children.1"/>
+                    <layoutConstraint xsi:type="notation:Bounds"/>
+                </children>
+                <styles xsi:type="notation:SortingStyle"/>
+                <styles xsi:type="notation:FilteringStyle"/>
+                <element href="//0/@process"/>
+            </children>
+            <children type="3003">
+                <styles xsi:type="notation:SortingStyle"/>
+                <styles xsi:type="notation:FilteringStyle"/>
+                <element href="//0/@process"/>
+            </children>
+            <children type="3004">
+                <children type="4018">
+                    <children type="3018">
+                        <children type="4020">
+                            <children type="3020">
+                                <children type="4005">
+                                    <children type="3007">
+                                    <children type="4002">
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.0"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.0"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.0"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.0"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles
+                                    backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.0"/>
+                                    <layoutConstraint x="30"
+                                    xsi:type="notation:Bounds" y="70"/>
+                                    </children>
+                                    <children type="4002">
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.1"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.1"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.1"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.1"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles
+                                    backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.1"/>
+                                    <layoutConstraint x="657"
+                                    xsi:type="notation:Bounds" y="103"/>
+                                    </children>
+                                    <children type="4018">
+                                    <children type="3018">
+                                    <children type="4020">
+                                    <children type="3020">
+                                    <children type="4005">
+                                    <children type="3007">
+
+                                    <children type="4002 com.tibco.bw.core.design.process.editor.Activity_4002_Invoke">
+
+                                    <children type="4017">
+
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+
+                                    <element href="//0/@process/@activity/@activity/@activities.2/@activity/@activities.1/@activity/@activity/@activities.2"/>
+
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+
+                                    <children type="4017">
+
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+
+                                    <element href="//0/@process/@activity/@activity/@activities.2/@activity/@activities.1/@activity/@activity/@activities.2"/>
+
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+
+                                    <children type="4017">
+
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+
+                                    <element href="//0/@process/@activity/@activity/@activities.2/@activity/@activities.1/@activity/@activity/@activities.2"/>
+
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+
+                                    <children type="4017">
+
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+
+                                    <element href="//0/@process/@activity/@activity/@activities.2/@activity/@activities.1/@activity/@activity/@activities.2"/>
+
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+
+                                    <styles
+                                    backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+
+                                    <element href="//0/@process/@activity/@activity/@activities.2/@activity/@activities.1/@activity/@activity/@activities.2"/>
+
+                                    <layoutConstraint
+                                    height="40"
+                                    width="40"
+                                    x="45"
+                                    xsi:type="notation:Bounds" y="20"/>
+                                    </children>
+
+                                    <children type="4002">
+
+                                    <children type="4017">
+
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+
+                                    <children type="4017">
+
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+
+                                    <children type="4017">
+
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+
+                                    <children type="4017">
+
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+
+                                    <styles
+                                    backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+
+                                    <element href="//0/@process/@activity/@activity/@activities.2/@activity/@activities.1/@activity/@activity/@activities.3"/>
+
+                                    <layoutConstraint
+                                    x="45"
+                                    xsi:type="notation:Bounds" y="136"/>
+                                    </children>
+                                    <styles xsi:type="notation:DrawerStyle"/>
+                                    <styles xsi:type="notation:SortingStyle"/>
+                                    <styles xsi:type="notation:FilteringStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.2/@activity/@activities.1/@activity/@activity"/>
+                                    </children>
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles
+                                    backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+                                    <styles xsi:type="bwnotation:ResizingStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.2/@activity/@activities.1/@activity/@activity"/>
+
+                                    <layoutConstraint
+                                    height="262"
+                                    width="250" xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <styles xsi:type="notation:SortingStyle"/>
+                                    <styles xsi:type="notation:FilteringStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.2"/>
+                                    </children>
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles xsi:type="bwnotation:BackgroundStyle"/>
+                                    <styles xsi:type="bwnotation:ResizingStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.2"/>
+                                    <layoutConstraint
+                                    height="218"
+                                    width="253"
+                                    x="15"
+                                    xsi:type="notation:Bounds" y="20"/>
+                                    </children>
+                                    <children type="4002">
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles
+                                    backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.2/@activity/@activities.1/@activity/@activity/@activities.0"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4002">
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles
+                                    backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.2/@activity/@activities.1/@activity/@activity/@activities.1"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <styles xsi:type="notation:SortingStyle"/>
+                                    <styles xsi:type="notation:FilteringStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.2"/>
+                                    </children>
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles xsi:type="bwnotation:BackgroundStyle"/>
+                                    <styles xsi:type="bwnotation:ResizingStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.2"/>
+                                    <layoutConstraint
+                                    height="262" width="293"
+                                    x="236"
+                                    xsi:type="notation:Bounds" y="14"/>
+                                    </children>
+                                    <children type="4002 bw.generalactivities.mapper">
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.3"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.3"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.3"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.3"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles
+                                    backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.3"/>
+                                    <layoutConstraint
+                                    height="40" width="40"
+                                    x="509"
+                                    xsi:type="notation:Bounds" y="103"/>
+                                    </children>
+                                    <styles xsi:type="notation:DrawerStyle"/>
+                                    <styles xsi:type="notation:SortingStyle"/>
+                                    <styles xsi:type="notation:FilteringStyle"/>
+                                    <element href="//0/@process/@activity/@activity"/>
+                                    </children>
+                                    <styles fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+                                    <styles xsi:type="bwnotation:ResizingStyle"/>
+                                    <element href="//0/@process/@activity/@activity"/>
+                                    <layoutConstraint height="386"
+                                    width="998" xsi:type="notation:Bounds"/>
+                                </children>
+                                <styles xsi:type="notation:SortingStyle"/>
+                                <styles xsi:type="notation:FilteringStyle"/>
+                                <element href="//0/@process/@activity"/>
+                            </children>
+                            <styles fontName=".SF NS Text" lineColor="0" xsi:type="notation:ShapeStyle"/>
+                            <styles xsi:type="bwnotation:BackgroundStyle"/>
+                            <styles xsi:type="bwnotation:ResizingStyle"/>
+                            <element href="//0/@process/@activity"/>
+                            <layoutConstraint height="279" width="1001" xsi:type="notation:Bounds"/>
+                        </children>
+                        <children type="4022">
+                            <children type="3022">
+                                <children type="4028">
+                                    <children type="3029">
+                                    <children type="4032">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <element href="//0/@process/@activity/@faultHandlers/@catch.0"/>
+                                    <layoutConstraint
+                                    height="34" width="34"
+                                    xsi:type="notation:Bounds" y="68"/>
+                                    </children>
+                                    <styles xsi:type="notation:SortingStyle"/>
+                                    <styles xsi:type="notation:FilteringStyle"/>
+                                    </children>
+                                    <children type="3030">
+                                    <children type="4005">
+                                    <children type="3007">
+                                    <children type="4002">
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles
+                                    backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+                                    <element href="//0/@process/@activity/@faultHandlers/@catch.0/@activity/@activity/@activities.0"/>
+                                    <layoutConstraint
+                                    x="296"
+                                    xsi:type="notation:Bounds" y="8"/>
+                                    </children>
+                                    <children type="4002 bw.generalactivities.log">
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles
+                                    backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+                                    <element href="//0/@process/@activity/@faultHandlers/@catch.0/@activity/@activity/@activities.1"/>
+                                    <layoutConstraint
+                                    height="40"
+                                    width="40"
+                                    x="177"
+                                    xsi:type="notation:Bounds" y="8"/>
+                                    </children>
+                                    <styles xsi:type="notation:DrawerStyle"/>
+                                    <styles xsi:type="notation:SortingStyle"/>
+                                    <styles xsi:type="notation:FilteringStyle"/>
+                                    </children>
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles
+                                    backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+                                    <styles xsi:type="bwnotation:ResizingStyle"/>
+                                    <element href="//0/@process/@activity/@faultHandlers/@catch.0/@activity/@activity"/>
+                                    <layoutConstraint
+                                    height="100" width="900" xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <styles xsi:type="notation:SortingStyle"/>
+                                    <styles xsi:type="notation:FilteringStyle"/>
+                                    </children>
+                                    <styles fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles xsi:type="bwnotation:BackgroundStyle"/>
+                                    <styles xsi:type="bwnotation:ResizingStyle"/>
+                                    <element href="//0/@process/@activity/@faultHandlers/@catch.0"/>
+                                    <layoutConstraint height="106"
+                                    width="951" xsi:type="notation:Bounds"/>
+                                </children>
+                                <styles xsi:type="notation:SortingStyle"/>
+                                <styles xsi:type="notation:FilteringStyle"/>
+                            </children>
+                            <styles fontName=".SF NS Text" lineColor="0" xsi:type="notation:ShapeStyle"/>
+                            <styles xsi:type="bwnotation:BackgroundStyle"/>
+                            <styles xsi:type="bwnotation:ResizingStyle"/>
+                            <element href="//0/@process/@activity/@faultHandlers"/>
+                            <layoutConstraint height="132" width="961"
+                                x="22" xsi:type="notation:Bounds" y="279"/>
+                        </children>
+                        <styles xsi:type="notation:SortingStyle"/>
+                        <styles xsi:type="notation:FilteringStyle"/>
+                        <element href="//0/@process/@activity"/>
+                    </children>
+                    <styles fontName=".SF NS Text" lineColor="0" xsi:type="notation:ShapeStyle"/>
+                    <styles xsi:type="bwnotation:BackgroundStyle"/>
+                    <styles xsi:type="bwnotation:ResizingStyle"/>
+                    <element href="//0/@process/@activity"/>
+                    <layoutConstraint height="412" width="1001" x="1"
+                        xsi:type="notation:Bounds" y="1"/>
+                </children>
+                <styles xsi:type="notation:SortingStyle"/>
+                <styles xsi:type="notation:FilteringStyle"/>
+                <element href="//0/@process"/>
+            </children>
+            <styles fontName=".SF NS Text" lineColor="0" xsi:type="notation:ShapeStyle"/>
+            <element href="//0/@process"/>
+            <layoutConstraint height="464" width="1343" xsi:type="notation:Bounds"/>
+        </children>
+        <styles xsi:type="notation:DiagramStyle"/>
+        <element href="//0"/>
+        <edges
+            source="//@children.0/@children.4/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0"
+            target="//@children.0/@children.4/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.2" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
+            <styles fontName=".SF NS Text" xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.0"/>
+            <bendpoints points="[0, 0, 0, 0]$[0, 0, 0, 0]" xsi:type="notation:RelativeBendpoints"/>
+        </edges>
+        <edges
+            source="//@children.0/@children.4/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.2"
+            target="//@children.0/@children.4/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.3" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
+            <styles fontName=".SF NS Text" xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.1"/>
+            <bendpoints points="[0, 0, 0, 0]$[0, 0, 0, 0]" xsi:type="notation:RelativeBendpoints"/>
+        </edges>
+        <edges
+            source="//@children.0/@children.4/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.2/@children.0/@children.1"
+            target="//@children.0/@children.4/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.2/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
+            <styles fontName=".SF NS Text" xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@activity/@activities.2/@activity/@activities.1/@activity/@activity/@links/@children.0"/>
+            <bendpoints points="[0, 0, 0, 0]$[0, 0, 0, 0]" xsi:type="notation:RelativeBendpoints"/>
+        </edges>
+        <edges
+            source="//@children.0/@children.4/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.2/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0"
+            target="//@children.0/@children.4/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.2/@children.0/@children.2" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
+            <styles fontName=".SF NS Text" xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@activity/@activities.2/@activity/@activities.1/@activity/@activity/@links/@children.1"/>
+            <bendpoints points="[0, 0, 0, 0]$[0, 0, 0, 0]" xsi:type="notation:RelativeBendpoints"/>
+        </edges>
+        <edges
+            source="//@children.0/@children.4/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.3"
+            target="//@children.0/@children.4/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.1" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
+            <styles fontName=".SF NS Text" xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.2"/>
+            <bendpoints points="[0, 0, 0, 0]$[0, 0, 0, 0]" xsi:type="notation:RelativeBendpoints"/>
+        </edges>
+        <edges
+            source="//@children.0/@children.4/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.2/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0"
+            target="//@children.0/@children.4/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.2/@children.0/@children.0/@children.0/@children.0/@children.0/@children.1" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="255" xsi:type="notation:ConnectorStyle"/>
+            <styles fontName=".SF NS Text" xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@activity/@activities.2/@activity/@activities.1/@activity/@activity/@links/@children.2"/>
+            <bendpoints points="[0, 0, 0, 0]$[0, 0, 0, 0]" xsi:type="notation:RelativeBendpoints"/>
+        </edges>
+        <edges
+            source="//@children.0/@children.4/@children.0/@children.0/@children.1/@children.0/@children.0/@children.1/@children.0/@children.0/@children.1"
+            target="//@children.0/@children.4/@children.0/@children.0/@children.1/@children.0/@children.0/@children.1/@children.0/@children.0/@children.0" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
+            <styles fontName=".SF NS Text" xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@faultHandlers/@catch.0/@activity/@activity/@links/@children.0"/>
+            <bendpoints points="[25, 0, -94, 0]$[95, 0, -24, 0]" xsi:type="notation:RelativeBendpoints"/>
+        </edges>
+    </notation:Diagram>
+    <bpws:import importType="http://schemas.xmlsoap.org/wsdl/"
+        location="../../Service%20Descriptors/2016/siebel/reference/suppressions/PopulateSuppressionsService.wsdl" namespace="http://cruk.org/tibco/2016/siebel/reference/suppressions"/>
+    <bpws:import importType="http://schemas.xmlsoap.org/wsdl/"
+        location="../../Service%20Descriptors/get_SiebelSuppressions.wsdl" namespace="http://cruk.org/tibco/2016/wsdl/suppressions"/>
+    <bpws:partnerLinks>
+        <bpws:partnerLink myRole="use"
+            name="PopulateSuppressionsService"
+            partnerLinkType="ns:partnerLinkType2"
+            sca-bpel:ignore="false" sca-bpel:service="PopulateSuppressionsService"/>
+        <bpws:partnerLink name="get_Siebel_Suppressions"
+            partnerLinkType="ns:partnerLinkType1" partnerRole="use"
+            sca-bpel:ignore="true"
+            sca-bpel:reference="get_Siebel_Suppressions" sca-bpel:wiredByImpl="false">
+            <tibex:ReferenceWire dynamic="false" inline="false"
+                processConfigurationName=""
+                processName="org.cruk.lib.Siebel.Suppressions.get_Siebel_Suppressions" serviceName="GetSiebelSuppressions"/>
+        </bpws:partnerLink>
+    </bpws:partnerLinks>
+    <bpws:variables>
+        <bpws:variable element="ns0:ProcessContext"
+            name="_processContext" sca-bpel:internal="true"/>
+        <bpws:variable messageType="ns2:input"
+            name="populateSuppressionsIn" sca-bpel:internal="true"/>
+        <bpws:variable messageType="ns2:output"
+            name="populateSuppressionsOut-input" sca-bpel:internal="true"/>
+        <bpws:variable messageType="ns1:get_suppressionsRequest"
+            name="getSuppressionChannelAndType-input" sca-bpel:internal="true"/>
+        <bpws:variable messageType="ns1:get_suppressionsResponse"
+            name="getSuppressionChannelAndType" sca-bpel:internal="true"/>
+        <bpws:variable element="ns2:PopulateSuppressionsResponse"
+            name="EnrichSiebelMessage-input" sca-bpel:internal="true"/>
+        <bpws:variable element="ns2:PopulateSuppressionsResponse"
+            name="EnrichSiebelMessage" sca-bpel:internal="true"/>
+        <bpws:variable element="ns5:AccumulatedOutput" name="Accumulate" sca-bpel:internal="true"/>
+        <bpws:variable element="ns2:PopulateSuppressionsFault"
+            name="Throw-input" sca-bpel:internal="true"/>
+        <bpws:variable messageType="ns2:fault" name="Reply-input" sca-bpel:internal="true"/>
+        <bpws:variable element="ns6:ActivityInput" name="Log-input" sca-bpel:internal="true"/>
+    </bpws:variables>
+    <bpws:extensions>
+        <bpws:extension mustUnderstand="no" namespace="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+        <bpws:extension mustUnderstand="no" namespace="http://www.tibco.com/bw/process/info"/>
+        <bpws:extension mustUnderstand="no" namespace="http://docs.oasis-open.org/ns/opencsa/sca-bpel/200801"/>
+        <bpws:extension mustUnderstand="no" namespace="http://docs.oasis-open.org/ns/opencsa/sca/200912"/>
+        <bpws:extension mustUnderstand="no" namespace="http://ns.tibco.com/bw/property"/>
+        <bpws:extension mustUnderstand="no" namespace="http://www.tibco.com/bpel/2007/extensions"/>
+    </bpws:extensions>
+    <bpws:scope name="scope">
+        <bpws:faultHandlers>
+            <bpws:catch faultElement="ns2:PopulateSuppressionsFault"
+                faultName="ns2:PopulateSuppressionsFault"
+                faultVariable="PopulateSuppressionsFault" tibex:xpdlId="a9015773-8036-439d-812d-d16a4f568700">
+                <bpws:scope name="scope2">
+                    <bpws:flow name="flow3">
+                        <bpws:links>
+                            <bpws:link name="LogToReply" tibex:linkType="SUCCESS"/>
+                        </bpws:links>
+                        <bpws:reply faultName="fault" name="Reply"
+                            operation="populateSuppressions"
+                            partnerLink="PopulateSuppressionsService"
+                            portType="ns2:PopulateSuppressionsService"
+                            tibex:xpdlId="1d85e40b-5df5-42dc-b3af-9cc7514565cd" variable="Reply-input">
+                            <tibex:inputBinding expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tns="http://cruk.org/tibco/2016/siebel/reference/suppressions" version="2.0"&gt;&lt;xsl:param name="PopulateSuppressionsFault"/&gt;&lt;xsl:template name="Reply1-input" match="/"&gt;&lt;tns:fault&gt;&lt;parameters&gt;&lt;tns:PopulateSuppressionsFault&gt;&lt;fault&gt;&lt;xsl:value-of select="$PopulateSuppressionsFault/fault"/&gt;&lt;/fault&gt;&lt;/tns:PopulateSuppressionsFault&gt;&lt;/parameters&gt;&lt;/tns:fault&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;</tibex:inputBinding>
+                            <tibex:inputBindings>
+                                <tibex:partBinding
+                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://cruk.org/tibco/2016/siebel/reference/suppressions&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;PopulateSuppressionsFault&quot;/>&#xa;    &lt;xsl:template name=&quot;Reply1-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns:PopulateSuppressionsFault>&#xa;            &lt;fault>&#xa;                &lt;xsl:value-of select=&quot;$PopulateSuppressionsFault/fault&quot;/>&#xa;            &lt;/fault>&#xa;        &lt;/tns:PopulateSuppressionsFault>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                            </tibex:inputBindings>
+                            <bpws:targets>
+                                <bpws:target linkName="LogToReply"/>
+                            </bpws:targets>
+                        </bpws:reply>
+                        <bpws:extensionActivity>
+                            <tibex:activityExtension
+                                expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/pe/WriteToLogActivitySchema&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;PopulateSuppressionsFault&quot;/>&lt;xsl:template name=&quot;Log-input&quot; match=&quot;/&quot;>&lt;tns:ActivityInput>&lt;message>&lt;xsl:value-of select=&quot;$PopulateSuppressionsFault/fault&quot;/>&lt;/message>&lt;/tns:ActivityInput>&lt;/xsl:template>&lt;/xsl:stylesheet>"
+                                expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"
+                                inputVariable="Log-input" name="Log"
+                                tibex:xpdlId="95c9660d-1ab0-4c4e-90fa-037cd907049d" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
+                                <bpws:sources>
+                                    <bpws:source linkName="LogToReply"/>
+                                </bpws:sources>
+                                <tibex:inputBindings>
+                                    <tibex:inputBinding
+                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/pe/WriteToLogActivitySchema&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;PopulateSuppressionsFault&quot;/>&lt;xsl:template name=&quot;Log-input&quot; match=&quot;/&quot;>&lt;tns:ActivityInput>&lt;message>&lt;xsl:value-of select=&quot;$PopulateSuppressionsFault/fault&quot;/>&lt;/message>&lt;/tns:ActivityInput>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                                </tibex:inputBindings>
+                                <tibex:config>
+                                    <bwext:BWActivity
+                                    activityTypeID="bw.generalactivities.log"
+                                    version="6.0.0.001"
+                                    xmlns:activityconfig="http://tns.tibco.com/bw/model/activityconfig"
+                                    xmlns:bwext="http://tns.tibco.com/bw/model/core/bwext"
+                                    xmlns:generalactivities="http://ns.tibco.com/bw/palette/generalactivities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                                    <activityConfig>
+                                    <properties name="config" xsi:type="activityconfig:EMFProperty">
+                                    <type href="http://ns.tibco.com/bw/palette/generalactivities#//Log"/>
+                                    <value role="Error"
+                                    suppressJobInfo="true" xsi:type="generalactivities:Log"/>
+                                    </properties>
+                                    </activityConfig>
+                                    </bwext:BWActivity>
+                                </tibex:config>
+                            </tibex:activityExtension>
+                        </bpws:extensionActivity>
+                    </bpws:flow>
+                </bpws:scope>
+            </bpws:catch>
+        </bpws:faultHandlers>
+        <bpws:flow name="flow">
+            <bpws:links>
+                <bpws:link name="populateSuppressionsInToIterate1" tibex:linkType="SUCCESS"/>
+                <bpws:link name="Iterate1TopopulateSuppressionsOut" tibex:linkType="SUCCESS"/>
+                <bpws:link name="Mapper2TopopulateSuppressionsOut" tibex:linkType="SUCCESS"/>
+            </bpws:links>
+            <bpws:receive createInstance="yes"
+                name="populateSuppressionsIn"
+                operation="populateSuppressions"
+                partnerLink="PopulateSuppressionsService"
+                portType="ns2:PopulateSuppressionsService"
+                tibex:xpdlId="5d8e725b-66dd-4fe2-bc2a-f31aba2fc271" variable="populateSuppressionsIn">
+                <bpws:sources>
+                    <bpws:source linkName="populateSuppressionsInToIterate1"/>
+                </bpws:sources>
+                <bpws:correlations/>
+            </bpws:receive>
+            <bpws:reply name="populateSuppressionsOut"
+                operation="populateSuppressions"
+                partnerLink="PopulateSuppressionsService"
+                portType="ns2:PopulateSuppressionsService"
+                tibex:xpdlId="c4d64bdf-0183-47da-ad54-601b80dabe49" variable="populateSuppressionsOut-input">
+                <tibex:inputBinding expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tns="http://cruk.org/tibco/2016/siebel/reference/suppressions" version="2.0"&gt;
+    &lt;xsl:param name="EnrichSiebelMessage"/&gt;
+    &lt;xsl:template name="populateSuppressionsOut-input" match="/"&gt;
+        &lt;tns:output&gt;
+            &lt;parameters&gt;
+                &lt;xsl:copy-of select="$EnrichSiebelMessage"/&gt;
+            &lt;/parameters&gt;
+        &lt;/tns:output&gt;
+    &lt;/xsl:template&gt;
+&lt;/xsl:stylesheet&gt;</tibex:inputBinding>
+                <tibex:inputBindings>
+                    <tibex:partBinding
+                        expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://cruk.org/tibco/2016/siebel/reference/suppressions&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;EnrichSiebelMessage&quot;/>&#xa;    &lt;xsl:template name=&quot;populateSuppressionsOut-input&quot; match=&quot;/&quot;>&#xa;        &lt;xsl:copy-of select=&quot;$EnrichSiebelMessage&quot;/>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                </tibex:inputBindings>
+                <bpws:targets>
+                    <bpws:target linkName="Mapper2TopopulateSuppressionsOut"/>
+                </bpws:targets>
+            </bpws:reply>
+            <bpws:scope name="ForEach" tibex:group="foreach" tibex:xpdlId="a613f127-6300-41b4-b729-091c6a420ac7">
+                <bpws:targets>
+                    <bpws:target linkName="populateSuppressionsInToIterate1"/>
+                </bpws:targets>
+                <bpws:sources>
+                    <bpws:source linkName="Iterate1TopopulateSuppressionsOut"/>
+                </bpws:sources>
+                <bpws:sequence name="sequence" tibex:group="foreach">
+                    <bpws:assign name="GroupInit"
+                        tibex:group="groupInit" validate="no">
+                        <bpws:copy>
+                            <bpws:from expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"><![CDATA[<?xml version="1.0" encoding="UTF-8"?> <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tns="http://tns.tibco.com/bw/palette/internal/accumulateoutput+95f20542-3202-4881-b3c7-e99a771df9b9" version="2.0"> <xsl:template name="Accumulate" match="/"> <tns:AccumulatedOutput/> </xsl:template> </xsl:stylesheet>]]></bpws:from>
+                            <bpws:to variable="Accumulate"/>
+                        </bpws:copy>
+                    </bpws:assign>
+                    <bpws:forEach counterName="index" name="forEach"
+                        parallel="no" tibex:group="foreach">
+                        <tibex:DesignExpression name="final">
+                            <tibex:expression
+                                expression="count($populateSuppressionsIn/parameters/ns2:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:listOfSuppressionsPreferences/xsdLocal:suppressionsPreferences)" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath2.0"/>
+                        </tibex:DesignExpression>
+                        <bpws:startCounterValue><![CDATA[1]]></bpws:startCounterValue>
+                        <bpws:finalCounterValue expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath2.0"><![CDATA[count($populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:listOfSuppressionsPreferences/xsdLocal:suppressionsPreferences)]]></bpws:finalCounterValue>
+                        <bpws:scope name="innerScope">
+                            <bpws:flow name="flow2">
+                                <bpws:links>
+                                    <bpws:link
+                                    name="GroupStart1ToInvoke1" tibex:linkType="SUCCESS"/>
+                                    <bpws:link name="InvokeToAccumulate" tibex:linkType="SUCCESS"/>
+                                    <bpws:link
+                                    name="getSuppressionChannelAndTypeToThrow" tibex:linkType="SUCCESSWITHCONDITION"/>
+                                </bpws:links>
+                                <bpws:empty name="GroupStart1"
+                                    tibex:group="groupStart" tibex:xpdlId="14b34e8c-b13a-49a5-9ed4-ca9979ade8f9">
+                                    <bpws:sources>
+                                    <bpws:source linkName="GroupStart1ToInvoke1"/>
+                                    </bpws:sources>
+                                </bpws:empty>
+                                <bpws:extensionActivity>
+                                    <tibex:activityExtension
+                                    name="Accumulate"
+                                    outputVariable="Accumulate"
+                                    tibex:group="groupEnd"
+                                    tibex:xpdlId="95f20542-3202-4881-b3c7-e99a771df9b9" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
+                                    <bpws:targets>
+                                    <bpws:target linkName="InvokeToAccumulate"/>
+                                    </bpws:targets>
+                                    <tibex:config>
+                                    <bwext:BWActivity
+                                    activityTypeID="bw.internal.accumulateend"
+                                    xmlns:activityconfig="http://tns.tibco.com/bw/model/activityconfig"
+                                    xmlns:bwext="http://tns.tibco.com/bw/model/core/bwext"
+                                    xmlns:internalactivities="http://ns.tibco.com/bw/core/internalactivity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                                    <activityConfig>
+                                    <properties
+                                    name="config" xsi:type="activityconfig:EMFProperty">
+                                    <type href="http://ns.tibco.com/bw/core/internalactivity#//AccumulateEnd"/>
+                                    <value
+                                    partName="channel_type" xsi:type="internalactivities:AccumulateEnd">
+                                    <activityNames>getSuppressionChannelAndType</activityNames>
+                                    </value>
+                                    </properties>
+                                    </activityConfig>
+                                    </bwext:BWActivity>
+                                    </tibex:config>
+                                    </tibex:activityExtension>
+                                </bpws:extensionActivity>
+                                <bpws:invoke
+                                    inputVariable="getSuppressionChannelAndType-input"
+                                    name="getSuppressionChannelAndType"
+                                    operation="get_suppressions"
+                                    outputVariable="getSuppressionChannelAndType"
+                                    partnerLink="get_Siebel_Suppressions"
+                                    portType="ns1:get_Suppressions" tibex:xpdlId="fbd3fba6-6780-4fb9-8f1b-2d7bd3893e34">
+                                    <tibex:inputBinding expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsdLocal="http://www.cancerresearchuk.org/di/r17/target/siebel" xmlns:tns="http://cruk.org/tibco/2016/wsdl/suppressions" xmlns:tns1="http://cruk.org/tibco/2016/get/siebelsuppressions" xmlns:tns2="http://cruk.org/tibco/2016/siebel/reference/suppressions" version="2.0"&gt;&lt;xsl:param name="index"/&gt;&lt;xsl:param name="populateSuppressionsIn"/&gt;&lt;xsl:template name="getSuppressionChannelAndType-input" match="/"&gt;&lt;tns:get_suppressionsRequest&gt;&lt;parameters&gt;&lt;tns1:get_suppressionsRequest&gt;&lt;in_supp_code&gt;&lt;xsl:value-of select="$populateSuppressionsIn/parameters/tns2:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:listOfSuppressionsPreferences/xsdLocal:suppressionsPreferences[number($index)]/xsdLocal:suppressionPreferenceCode"/&gt;&lt;/in_supp_code&gt;&lt;/tns1:get_suppressionsRequest&gt;&lt;/parameters&gt;&lt;/tns:get_suppressionsRequest&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;</tibex:inputBinding>
+                                    <tibex:inputBindings>
+                                    <tibex:partBinding
+                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:xsdLocal=&quot;http://www.cancerresearchuk.org/di/r17/target/siebel&quot; xmlns:tns=&quot;http://cruk.org/tibco/2016/wsdl/suppressions&quot; xmlns:tns1=&quot;http://cruk.org/tibco/2016/get/siebelsuppressions&quot; xmlns:tns2=&quot;http://cruk.org/tibco/2016/siebel/reference/suppressions&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;populateSuppressionsIn.parameters&quot;/>&#xa;    &lt;xsl:param name=&quot;index&quot;/>&#xa;    &lt;xsl:template name=&quot;getSuppressionChannelAndType-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns1:get_suppressionsRequest>&#xa;            &lt;in_supp_code>&#xa;                &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:listOfSuppressionsPreferences/xsdLocal:suppressionsPreferences[number($index)]/xsdLocal:suppressionPreferenceCode&quot;/>&#xa;            &lt;/in_supp_code>&#xa;        &lt;/tns1:get_suppressionsRequest>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                                    </tibex:inputBindings>
+                                    <bpws:targets>
+                                    <bpws:target linkName="GroupStart1ToInvoke1"/>
+                                    </bpws:targets>
+                                    <bpws:sources>
+                                    <bpws:source linkName="InvokeToAccumulate"/>
+                                    <bpws:source linkName="getSuppressionChannelAndTypeToThrow">
+                                    <tibex:DesignExpression>
+                                    <tibex:expression
+                                    expression="$getSuppressionChannelAndType/channel_type/tns:get_suppressionsResponse/out_channel = &quot;&quot; or $getSuppressionChannelAndType/channel_type/tns:get_suppressionsResponse/out_type = &quot;&quot;" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath2.0"/>
+                                    </tibex:DesignExpression>
+                                    <bpws:transitionCondition><![CDATA[$getSuppressionChannelAndType.channel_type/out_channel = "" or $getSuppressionChannelAndType.channel_type/out_type = ""]]></bpws:transitionCondition>
+                                    </bpws:source>
+                                    </bpws:sources>
+                                    <bpws:correlations/>
+                                </bpws:invoke>
+                                <bpws:throw
+                                    faultName="ns2:PopulateSuppressionsFault"
+                                    faultVariable="Throw-input"
+                                    name="Throw" tibex:xpdlId="e70b8358-d596-491e-aaf0-c09713bc747d">
+                                    <tibex:inputBinding expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tns="http://cruk.org/tibco/2016/siebel/reference/suppressions" xmlns:tns1="http://cruk.org/tibco/2016/get/siebelsuppressions" xmlns:xsdLocal="http://www.cancerresearchuk.org/di/r17/target/siebel" xmlns:bw="http://www.tibco.com/bw/xpath/bw-custom-functions" version="2.0"&gt;
+    &lt;xsl:param name="getSuppressionChannelAndType"/&gt;
+    &lt;xsl:param name="index"/&gt;
+    &lt;xsl:param name="populateSuppressionsIn"/&gt;
+    &lt;xsl:template name="Throw-input" match="/"&gt;
+        &lt;tns:PopulateSuppressionsFault&gt;
+            &lt;xsl:choose&gt;
+                &lt;xsl:when test="$getSuppressionChannelAndType/channel_type/tns1:get_suppressionsResponse/out_channel = &amp;quot;&amp;quot;"&gt;
+                    &lt;fault&gt;
+                        &lt;xsl:value-of select="concat (&amp;quot;Lookup returned no channel for pref code: &amp;quot;, $populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:listOfSuppressionsPreferences/xsdLocal:suppressionsPreferences[number($index)]/xsdLocal:suppressionPreferenceCode)"/&gt;
+                    &lt;/fault&gt;
+                &lt;/xsl:when&gt;
+                &lt;xsl:when test="$getSuppressionChannelAndType/channel_type/tns1:get_suppressionsResponse/out_type = &amp;quot;&amp;quot;"&gt;
+                    &lt;fault&gt;
+                        &lt;xsl:value-of select="concat (&amp;quot;Lookup returned no type for pref code: &amp;quot;, $populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:listOfSuppressionsPreferences/xsdLocal:suppressionsPreferences[number($index)]/xsdLocal:suppressionPreferenceCode)"/&gt;
+                    &lt;/fault&gt;
+                &lt;/xsl:when&gt;
+                &lt;xsl:otherwise&gt;
+                    &lt;fault&gt;
+                        &lt;xsl:value-of select="concat(bw:getModuleProperty(&amp;quot;BW.APPLICATION.NAME&amp;quot;), &amp;quot;-&amp;quot;, bw:getModuleProperty(&amp;quot;BW.PROCESS.NAME&amp;quot;), &amp;quot;-&amp;quot;, bw:getModuleProperty(&amp;quot;BW.ACTIVITY.NAME&amp;quot;), &amp;quot;:&amp;quot;, &amp;quot;should not have come to Otherwise&amp;quot;)"/&gt;
+                    &lt;/fault&gt;
+                &lt;/xsl:otherwise&gt;
+            &lt;/xsl:choose&gt;
+        &lt;/tns:PopulateSuppressionsFault&gt;
+    &lt;/xsl:template&gt;
+&lt;/xsl:stylesheet&gt;</tibex:inputBinding>
+                                    <tibex:inputBindings>
+                                    <tibex:partBinding
+                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://cruk.org/tibco/2016/siebel/reference/suppressions&quot; xmlns:tns1=&quot;http://cruk.org/tibco/2016/get/siebelsuppressions&quot; xmlns:xsdLocal=&quot;http://www.cancerresearchuk.org/di/r17/target/siebel&quot; xmlns:bw=&quot;http://www.tibco.com/bw/xpath/bw-custom-functions&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;getSuppressionChannelAndType.channel_type&quot;/>&#xa;    &lt;xsl:param name=&quot;populateSuppressionsIn.parameters&quot;/>&#xa;    &lt;xsl:param name=&quot;index&quot;/>&#xa;    &lt;xsl:template name=&quot;Throw-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns:PopulateSuppressionsFault>&#xa;            &lt;xsl:choose>&#xa;                &lt;xsl:when test=&quot;$getSuppressionChannelAndType.channel_type/out_channel = &amp;quot;&amp;quot;&quot;>&#xa;                    &lt;fault>&#xa;                        &lt;xsl:value-of select=&quot;concat (&amp;quot;Lookup returned no channel for pref code: &amp;quot;, $populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:listOfSuppressionsPreferences/xsdLocal:suppressionsPreferences[number($index)]/xsdLocal:suppressionPreferenceCode)&quot;/>&#xa;                    &lt;/fault>&#xa;                &lt;/xsl:when>&#xa;                &lt;xsl:when test=&quot;$getSuppressionChannelAndType.channel_type/out_type = &amp;quot;&amp;quot;&quot;>&#xa;                    &lt;fault>&#xa;                        &lt;xsl:value-of select=&quot;concat (&amp;quot;Lookup returned no type for pref code: &amp;quot;, $populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:listOfSuppressionsPreferences/xsdLocal:suppressionsPreferences[number($index)]/xsdLocal:suppressionPreferenceCode)&quot;/>&#xa;                    &lt;/fault>&#xa;                &lt;/xsl:when>&#xa;                &lt;xsl:otherwise>&#xa;                    &lt;fault>&#xa;                        &lt;xsl:value-of select=&quot;concat(bw:getModuleProperty(&amp;quot;BW.APPLICATION.NAME&amp;quot;), &amp;quot;-&amp;quot;, bw:getModuleProperty(&amp;quot;BW.PROCESS.NAME&amp;quot;), &amp;quot;-&amp;quot;, bw:getModuleProperty(&amp;quot;BW.ACTIVITY.NAME&amp;quot;), &amp;quot;:&amp;quot;, &amp;quot;should not have come to Otherwise&amp;quot;)&quot;/>&#xa;                    &lt;/fault>&#xa;                &lt;/xsl:otherwise>&#xa;            &lt;/xsl:choose>&#xa;        &lt;/tns:PopulateSuppressionsFault>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                                    </tibex:inputBindings>
+                                    <bpws:targets>
+                                    <bpws:target linkName="getSuppressionChannelAndTypeToThrow"/>
+                                    </bpws:targets>
+                                </bpws:throw>
+                            </bpws:flow>
+                        </bpws:scope>
+                    </bpws:forEach>
+                </bpws:sequence>
+            </bpws:scope>
+            <bpws:extensionActivity>
+                <tibex:activityExtension
+                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://cruk.org/tibco/2016/siebel/reference/suppressions&quot; xmlns:xsdLocal=&quot;http://www.cancerresearchuk.org/di/r17/target/siebel&quot; xmlns:tns1=&quot;http://cruk.org/tibco/2016/get/siebelsuppressions&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;populateSuppressionsIn&quot;/>&lt;xsl:param name=&quot;Accumulate&quot;/>&lt;xsl:template name=&quot;EnrichSiebelMessage-input&quot; match=&quot;/&quot;>&lt;tns:PopulateSuppressionsResponse>&lt;xsl:if test=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/@IntObjectFormat&quot;>&lt;xsl:attribute name=&quot;IntObjectFormat&quot;>&lt;xsl:value-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/@IntObjectFormat&quot;/>&lt;/xsl:attribute>&lt;/xsl:if>&lt;xsl:if test=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/@IntObjectName&quot;>&lt;xsl:attribute name=&quot;IntObjectName&quot;>&lt;xsl:value-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/@IntObjectName&quot;/>&lt;/xsl:attribute>&lt;/xsl:if>&lt;xsl:if test=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/@MessageId&quot;>&lt;xsl:attribute name=&quot;MessageId&quot;>&lt;xsl:value-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/@MessageId&quot;/>&lt;/xsl:attribute>&lt;/xsl:if>&lt;xsl:if test=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/@MessageType&quot;>&lt;xsl:attribute name=&quot;MessageType&quot;>&lt;xsl:value-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/@MessageType&quot;/>&lt;/xsl:attribute>&lt;/xsl:if>&lt;xsdLocal:supporter>&lt;xsl:if test=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:dateOfBirth&quot;>&lt;xsdLocal:dateOfBirth>&lt;xsl:value-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:dateOfBirth&quot;/>&lt;/xsdLocal:dateOfBirth>&lt;/xsl:if>&lt;xsl:if test=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:forename&quot;>&lt;xsdLocal:forename>&lt;xsl:value-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:forename&quot;/>&lt;/xsdLocal:forename>&lt;/xsl:if>&lt;xsl:if test=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:gender&quot;>&lt;xsdLocal:gender>&lt;xsl:value-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:gender&quot;/>&lt;/xsdLocal:gender>&lt;/xsl:if>&lt;xsl:if test=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:initial&quot;>&lt;xsdLocal:initial>&lt;xsl:value-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:initial&quot;/>&lt;/xsdLocal:initial>&lt;/xsl:if>&lt;xsl:if test=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:startDate&quot;>&lt;xsdLocal:startDate>&lt;xsl:value-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:startDate&quot;/>&lt;/xsdLocal:startDate>&lt;/xsl:if>&lt;xsl:if test=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:source&quot;>&lt;xsdLocal:source>&lt;xsl:value-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:source&quot;/>&lt;/xsdLocal:source>&lt;/xsl:if>&lt;xsl:if test=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:statusCode&quot;>&lt;xsdLocal:statusCode>&lt;xsl:value-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:statusCode&quot;/>&lt;/xsdLocal:statusCode>&lt;/xsl:if>&lt;xsl:if test=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:statusDate&quot;>&lt;xsdLocal:statusDate>&lt;xsl:value-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:statusDate&quot;/>&lt;/xsdLocal:statusDate>&lt;/xsl:if>&lt;xsl:if test=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:suffix&quot;>&lt;xsdLocal:suffix>&lt;xsl:value-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:suffix&quot;/>&lt;/xsdLocal:suffix>&lt;/xsl:if>&lt;xsl:if test=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:supporterURN&quot;>&lt;xsdLocal:supporterURN>&lt;xsl:value-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:supporterURN&quot;/>&lt;/xsdLocal:supporterURN>&lt;/xsl:if>&lt;xsl:if test=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:surname&quot;>&lt;xsdLocal:surname>&lt;xsl:value-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:surname&quot;/>&lt;/xsdLocal:surname>&lt;/xsl:if>&lt;xsl:if test=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:title&quot;>&lt;xsdLocal:title>&lt;xsl:value-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:title&quot;/>&lt;/xsdLocal:title>&lt;/xsl:if>&lt;xsl:if test=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:lsdFlag&quot;>&lt;xsdLocal:lsdFlag>&lt;xsl:value-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:lsdFlag&quot;/>&lt;/xsdLocal:lsdFlag>&lt;/xsl:if>&lt;xsl:if test=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:nonTaxPayerFlag&quot;>&lt;xsdLocal:nonTaxPayerFlag>&lt;xsl:value-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:nonTaxPayerFlag&quot;/>&lt;/xsdLocal:nonTaxPayerFlag>&lt;/xsl:if>&lt;xsl:if test=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:nonTaxPayerStartDate&quot;>&lt;xsdLocal:nonTaxPayerStartDate>&lt;xsl:value-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:nonTaxPayerStartDate&quot;/>&lt;/xsdLocal:nonTaxPayerStartDate>&lt;/xsl:if>&lt;xsl:if test=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:dateOfDeath&quot;>&lt;xsdLocal:dateOfDeath>&lt;xsl:value-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:dateOfDeath&quot;/>&lt;/xsdLocal:dateOfDeath>&lt;/xsl:if>&lt;xsl:if test=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:deathNotificationDate&quot;>&lt;xsdLocal:deathNotificationDate>&lt;xsl:value-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:deathNotificationDate&quot;/>&lt;/xsdLocal:deathNotificationDate>&lt;/xsl:if>&lt;xsl:if test=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:maritalStatus&quot;>&lt;xsdLocal:maritalStatus>&lt;xsl:value-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:maritalStatus&quot;/>&lt;/xsdLocal:maritalStatus>&lt;/xsl:if>&lt;xsl:if test=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:contactKeyPrefix&quot;>&lt;xsdLocal:contactKeyPrefix>&lt;xsl:value-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:contactKeyPrefix&quot;/>&lt;/xsdLocal:contactKeyPrefix>&lt;/xsl:if>&lt;xsl:if test=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:contactKeyValue&quot;>&lt;xsdLocal:contactKeyValue>&lt;xsl:value-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:contactKeyValue&quot;/>&lt;/xsdLocal:contactKeyValue>&lt;/xsl:if>&lt;xsl:if test=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:preferredName&quot;>&lt;xsdLocal:preferredName>&lt;xsl:value-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:preferredName&quot;/>&lt;/xsdLocal:preferredName>&lt;/xsl:if>&lt;xsl:if test=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:middleName&quot;>&lt;xsdLocal:middleName>&lt;xsl:value-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:middleName&quot;/>&lt;/xsdLocal:middleName>&lt;/xsl:if>&lt;xsl:copy-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:listOfExternalReference&quot;/>&lt;xsl:if test=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:registrationId&quot;>&lt;xsdLocal:registrationId>&lt;xsl:value-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:registrationId&quot;/>&lt;/xsdLocal:registrationId>&lt;/xsl:if>&lt;xsl:if test=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:registrationReference&quot;>&lt;xsdLocal:registrationReference>&lt;xsl:value-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:registrationReference&quot;/>&lt;/xsdLocal:registrationReference>&lt;/xsl:if>&lt;xsl:if test=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:reservationId&quot;>&lt;xsdLocal:reservationId>&lt;xsl:value-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:reservationId&quot;/>&lt;/xsdLocal:reservationId>&lt;/xsl:if>&lt;xsl:if test=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:reservationStatus&quot;>&lt;xsdLocal:reservationStatus>&lt;xsl:value-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:reservationStatus&quot;/>&lt;/xsdLocal:reservationStatus>&lt;/xsl:if>&lt;xsl:if test=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:oldRegistrationId&quot;>&lt;xsdLocal:oldRegistrationId>&lt;xsl:value-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:oldRegistrationId&quot;/>&lt;/xsdLocal:oldRegistrationId>&lt;/xsl:if>&lt;xsl:copy-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:listOfAddress&quot;/>&lt;xsl:copy-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:listOfContactInfo-Phone&quot;/>&lt;xsl:copy-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:listOfContactInfo-Email&quot;/>&lt;xsl:copy-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:listOfContactInfo-Mobile&quot;/>&lt;xsl:copy-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:listOfDonations&quot;/>&lt;xsl:copy-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:listOfGiftAidDeclaration&quot;/>&lt;xsl:copy-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:listOfDirectDebit&quot;/>&lt;xsdLocal:listOfSuppressionsPreferences>&lt;xsl:for-each select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:listOfSuppressionsPreferences/xsdLocal:suppressionsPreferences&quot;>&lt;xsl:variable name=&quot;POS&quot; select=&quot;position()&quot;/>&lt;xsdLocal:suppressionsPreferences>&lt;xsl:if test=&quot;$Accumulate/tns1:get_suppressionsResponse[position()=$POS]/out_channel&quot;>&lt;xsdLocal:channel>&lt;xsl:value-of select=&quot;$Accumulate/tns1:get_suppressionsResponse[position()=$POS]/out_channel&quot;/>&lt;/xsdLocal:channel>&lt;/xsl:if>&lt;xsl:if test=&quot;xsdLocal:endDate&quot;>&lt;xsdLocal:endDate>&lt;xsl:value-of select=&quot;xsdLocal:endDate&quot;/>&lt;/xsdLocal:endDate>&lt;/xsl:if>&lt;xsl:if test=&quot;xsdLocal:startDate&quot;>&lt;xsdLocal:startDate>&lt;xsl:value-of select=&quot;xsdLocal:startDate&quot;/>&lt;/xsdLocal:startDate>&lt;/xsl:if>&lt;xsl:if test=&quot;xsdLocal:suppressionPreferenceCode&quot;>&lt;xsdLocal:suppressionPreferenceCode>&lt;xsl:value-of select=&quot;xsdLocal:suppressionPreferenceCode&quot;/>&lt;/xsdLocal:suppressionPreferenceCode>&lt;/xsl:if>&lt;xsl:if test=&quot;$Accumulate/tns1:get_suppressionsResponse[position()=$POS]/out_type&quot;>&lt;xsdLocal:type>&lt;xsl:value-of select=&quot;$Accumulate/tns1:get_suppressionsResponse[position()=$POS]/out_type&quot;/>&lt;/xsdLocal:type>&lt;/xsl:if>&lt;xsl:if test=&quot;xsdLocal:source&quot;>&lt;xsdLocal:source>&lt;xsl:value-of select=&quot;xsdLocal:source&quot;/>&lt;/xsdLocal:source>&lt;/xsl:if>&lt;xsl:if test=&quot;xsdLocal:id&quot;>&lt;xsdLocal:id>&lt;xsl:value-of select=&quot;xsdLocal:id&quot;/>&lt;/xsdLocal:id>&lt;/xsl:if>&lt;/xsdLocal:suppressionsPreferences>&lt;/xsl:for-each>&lt;/xsdLocal:listOfSuppressionsPreferences>&lt;xsl:copy-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:listOfCampaignMembership&quot;/>&lt;xsl:copy-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:listOfMailingActivities&quot;/>&lt;xsl:copy-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:listOfEventRegistration&quot;/>&lt;xsl:copy-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:listOfStandingOrders&quot;/>&lt;xsl:copy-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:listOfProfilingInfo&quot;/>&lt;xsl:copy-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:listOfOpportunity&quot;/>&lt;xsl:copy-of select=&quot;$populateSuppressionsIn/parameters/tns:PopulateSuppressionsRequest/xsdLocal:supporter/xsdLocal:listOfFundraisingActivity&quot;/>&lt;/xsdLocal:supporter>&lt;/tns:PopulateSuppressionsResponse>&lt;/xsl:template>&lt;/xsl:stylesheet>"
+                    expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"
+                    inputVariable="EnrichSiebelMessage-input"
+                    name="EnrichSiebelMessage"
+                    outputVariable="EnrichSiebelMessage"
+                    tibex:xpdlId="b4dd8038-9b0f-4786-a9c4-1c05304fb137" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
+                    <bpws:targets>
+                        <bpws:target linkName="Iterate1TopopulateSuppressionsOut"/>
+                    </bpws:targets>
+                    <bpws:sources>
+                        <bpws:source linkName="Mapper2TopopulateSuppressionsOut"/>
+                    </bpws:sources>
+                    <tibex:inputBindings>
+                        <tibex:inputBinding
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://cruk.org/tibco/2016/siebel/reference/suppressions&quot; xmlns:xsdLocal=&quot;http://www.cancerresearchuk.org/di/r17/target/siebel&quot; xmlns:tns1=&quot;http://cruk.org/tibco/2016/get/siebelsuppressions&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;populateSuppressionsIn.parameters&quot;/>&#xa;    &lt;xsl:param name=&quot;Accumulate&quot;/>&#xa;    &lt;xsl:template name=&quot;EnrichSiebelMessage-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns:PopulateSuppressionsResponse>&#xa;            &lt;xsl:if test=&quot;$populateSuppressionsIn.parameters/@IntObjectFormat&quot;>&#xa;                &lt;xsl:attribute name=&quot;IntObjectFormat&quot;>&#xa;                    &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/@IntObjectFormat&quot;/>&#xa;                &lt;/xsl:attribute>&#xa;            &lt;/xsl:if>&#xa;            &lt;xsl:if test=&quot;$populateSuppressionsIn.parameters/@IntObjectName&quot;>&#xa;                &lt;xsl:attribute name=&quot;IntObjectName&quot;>&#xa;                    &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/@IntObjectName&quot;/>&#xa;                &lt;/xsl:attribute>&#xa;            &lt;/xsl:if>&#xa;            &lt;xsl:if test=&quot;$populateSuppressionsIn.parameters/@MessageId&quot;>&#xa;                &lt;xsl:attribute name=&quot;MessageId&quot;>&#xa;                    &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/@MessageId&quot;/>&#xa;                &lt;/xsl:attribute>&#xa;            &lt;/xsl:if>&#xa;            &lt;xsl:if test=&quot;$populateSuppressionsIn.parameters/@MessageType&quot;>&#xa;                &lt;xsl:attribute name=&quot;MessageType&quot;>&#xa;                    &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/@MessageType&quot;/>&#xa;                &lt;/xsl:attribute>&#xa;            &lt;/xsl:if>&#xa;            &lt;xsdLocal:supporter>&#xa;                &lt;xsl:if test=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:dateOfBirth&quot;>&#xa;                    &lt;xsdLocal:dateOfBirth>&#xa;                        &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:dateOfBirth&quot;/>&#xa;                    &lt;/xsdLocal:dateOfBirth>&#xa;                &lt;/xsl:if>&#xa;                &lt;xsl:if test=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:forename&quot;>&#xa;                    &lt;xsdLocal:forename>&#xa;                        &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:forename&quot;/>&#xa;                    &lt;/xsdLocal:forename>&#xa;                &lt;/xsl:if>&#xa;                &lt;xsl:if test=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:gender&quot;>&#xa;                    &lt;xsdLocal:gender>&#xa;                        &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:gender&quot;/>&#xa;                    &lt;/xsdLocal:gender>&#xa;                &lt;/xsl:if>&#xa;                &lt;xsl:if test=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:initial&quot;>&#xa;                    &lt;xsdLocal:initial>&#xa;                        &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:initial&quot;/>&#xa;                    &lt;/xsdLocal:initial>&#xa;                &lt;/xsl:if>&#xa;                &lt;xsl:if test=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:startDate&quot;>&#xa;                    &lt;xsdLocal:startDate>&#xa;                        &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:startDate&quot;/>&#xa;                    &lt;/xsdLocal:startDate>&#xa;                &lt;/xsl:if>&#xa;                &lt;xsl:if test=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:source&quot;>&#xa;                    &lt;xsdLocal:source>&#xa;                        &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:source&quot;/>&#xa;                    &lt;/xsdLocal:source>&#xa;                &lt;/xsl:if>&#xa;                &lt;xsl:if test=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:statusCode&quot;>&#xa;                    &lt;xsdLocal:statusCode>&#xa;                        &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:statusCode&quot;/>&#xa;                    &lt;/xsdLocal:statusCode>&#xa;                &lt;/xsl:if>&#xa;                &lt;xsl:if test=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:statusDate&quot;>&#xa;                    &lt;xsdLocal:statusDate>&#xa;                        &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:statusDate&quot;/>&#xa;                    &lt;/xsdLocal:statusDate>&#xa;                &lt;/xsl:if>&#xa;                &lt;xsl:if test=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:suffix&quot;>&#xa;                    &lt;xsdLocal:suffix>&#xa;                        &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:suffix&quot;/>&#xa;                    &lt;/xsdLocal:suffix>&#xa;                &lt;/xsl:if>&#xa;                &lt;xsl:if test=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:supporterURN&quot;>&#xa;                    &lt;xsdLocal:supporterURN>&#xa;                        &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:supporterURN&quot;/>&#xa;                    &lt;/xsdLocal:supporterURN>&#xa;                &lt;/xsl:if>&#xa;                &lt;xsl:if test=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:surname&quot;>&#xa;                    &lt;xsdLocal:surname>&#xa;                        &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:surname&quot;/>&#xa;                    &lt;/xsdLocal:surname>&#xa;                &lt;/xsl:if>&#xa;                &lt;xsl:if test=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:title&quot;>&#xa;                    &lt;xsdLocal:title>&#xa;                        &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:title&quot;/>&#xa;                    &lt;/xsdLocal:title>&#xa;                &lt;/xsl:if>&#xa;                &lt;xsl:if test=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:lsdFlag&quot;>&#xa;                    &lt;xsdLocal:lsdFlag>&#xa;                        &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:lsdFlag&quot;/>&#xa;                    &lt;/xsdLocal:lsdFlag>&#xa;                &lt;/xsl:if>&#xa;                &lt;xsl:if test=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:nonTaxPayerFlag&quot;>&#xa;                    &lt;xsdLocal:nonTaxPayerFlag>&#xa;                        &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:nonTaxPayerFlag&quot;/>&#xa;                    &lt;/xsdLocal:nonTaxPayerFlag>&#xa;                &lt;/xsl:if>&#xa;                &lt;xsl:if test=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:nonTaxPayerStartDate&quot;>&#xa;                    &lt;xsdLocal:nonTaxPayerStartDate>&#xa;                        &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:nonTaxPayerStartDate&quot;/>&#xa;                    &lt;/xsdLocal:nonTaxPayerStartDate>&#xa;                &lt;/xsl:if>&#xa;                &lt;xsl:if test=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:dateOfDeath&quot;>&#xa;                    &lt;xsdLocal:dateOfDeath>&#xa;                        &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:dateOfDeath&quot;/>&#xa;                    &lt;/xsdLocal:dateOfDeath>&#xa;                &lt;/xsl:if>&#xa;                &lt;xsl:if test=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:deathNotificationDate&quot;>&#xa;                    &lt;xsdLocal:deathNotificationDate>&#xa;                        &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:deathNotificationDate&quot;/>&#xa;                    &lt;/xsdLocal:deathNotificationDate>&#xa;                &lt;/xsl:if>&#xa;                &lt;xsl:if test=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:maritalStatus&quot;>&#xa;                    &lt;xsdLocal:maritalStatus>&#xa;                        &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:maritalStatus&quot;/>&#xa;                    &lt;/xsdLocal:maritalStatus>&#xa;                &lt;/xsl:if>&#xa;                &lt;xsl:if test=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:contactKeyPrefix&quot;>&#xa;                    &lt;xsdLocal:contactKeyPrefix>&#xa;                        &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:contactKeyPrefix&quot;/>&#xa;                    &lt;/xsdLocal:contactKeyPrefix>&#xa;                &lt;/xsl:if>&#xa;                &lt;xsl:if test=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:contactKeyValue&quot;>&#xa;                    &lt;xsdLocal:contactKeyValue>&#xa;                        &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:contactKeyValue&quot;/>&#xa;                    &lt;/xsdLocal:contactKeyValue>&#xa;                &lt;/xsl:if>&#xa;                &lt;xsl:if test=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:preferredName&quot;>&#xa;                    &lt;xsdLocal:preferredName>&#xa;                        &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:preferredName&quot;/>&#xa;                    &lt;/xsdLocal:preferredName>&#xa;                &lt;/xsl:if>&#xa;                &lt;xsl:if test=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:middleName&quot;>&#xa;                    &lt;xsdLocal:middleName>&#xa;                        &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:middleName&quot;/>&#xa;                    &lt;/xsdLocal:middleName>&#xa;                &lt;/xsl:if>&#xa;                &lt;xsl:copy-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:listOfExternalReference&quot;/>&#xa;                &lt;xsl:if test=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:registrationId&quot;>&#xa;                    &lt;xsdLocal:registrationId>&#xa;                        &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:registrationId&quot;/>&#xa;                    &lt;/xsdLocal:registrationId>&#xa;                &lt;/xsl:if>&#xa;                &lt;xsl:if test=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:registrationReference&quot;>&#xa;                    &lt;xsdLocal:registrationReference>&#xa;                        &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:registrationReference&quot;/>&#xa;                    &lt;/xsdLocal:registrationReference>&#xa;                &lt;/xsl:if>&#xa;                &lt;xsl:if test=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:reservationId&quot;>&#xa;                    &lt;xsdLocal:reservationId>&#xa;                        &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:reservationId&quot;/>&#xa;                    &lt;/xsdLocal:reservationId>&#xa;                &lt;/xsl:if>&#xa;                &lt;xsl:if test=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:reservationStatus&quot;>&#xa;                    &lt;xsdLocal:reservationStatus>&#xa;                        &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:reservationStatus&quot;/>&#xa;                    &lt;/xsdLocal:reservationStatus>&#xa;                &lt;/xsl:if>&#xa;                &lt;xsl:if test=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:oldRegistrationId&quot;>&#xa;                    &lt;xsdLocal:oldRegistrationId>&#xa;                        &lt;xsl:value-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:oldRegistrationId&quot;/>&#xa;                    &lt;/xsdLocal:oldRegistrationId>&#xa;                &lt;/xsl:if>&#xa;                &lt;xsl:copy-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:listOfAddress&quot;/>&#xa;                &lt;xsl:copy-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:listOfContactInfo-Phone&quot;/>&#xa;                &lt;xsl:copy-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:listOfContactInfo-Email&quot;/>&#xa;                &lt;xsl:copy-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:listOfContactInfo-Mobile&quot;/>&#xa;                &lt;xsl:copy-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:listOfDonations&quot;/>&#xa;                &lt;xsl:copy-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:listOfGiftAidDeclaration&quot;/>&#xa;                &lt;xsl:copy-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:listOfDirectDebit&quot;/>&#xa;                &lt;xsdLocal:listOfSuppressionsPreferences>&#xa;                    &lt;xsl:for-each select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:listOfSuppressionsPreferences/xsdLocal:suppressionsPreferences&quot;>&#xa;                        &lt;xsl:variable name=&quot;POS&quot; select=&quot;position()&quot;/>&#xa;                        &lt;xsdLocal:suppressionsPreferences>&#xa;                            &lt;xsl:if test=&quot;$Accumulate/tns1:get_suppressionsResponse[position()=$POS]/out_channel&quot;>&#xa;                                &lt;xsdLocal:channel>&#xa;                                    &lt;xsl:value-of select=&quot;$Accumulate/tns1:get_suppressionsResponse[position()=$POS]/out_channel&quot;/>&#xa;                                &lt;/xsdLocal:channel>&#xa;                            &lt;/xsl:if>&#xa;                            &lt;xsl:if test=&quot;xsdLocal:endDate&quot;>&#xa;                                &lt;xsdLocal:endDate>&#xa;                                    &lt;xsl:value-of select=&quot;xsdLocal:endDate&quot;/>&#xa;                                &lt;/xsdLocal:endDate>&#xa;                            &lt;/xsl:if>&#xa;                            &lt;xsl:if test=&quot;xsdLocal:startDate&quot;>&#xa;                                &lt;xsdLocal:startDate>&#xa;                                    &lt;xsl:value-of select=&quot;xsdLocal:startDate&quot;/>&#xa;                                &lt;/xsdLocal:startDate>&#xa;                            &lt;/xsl:if>&#xa;                            &lt;xsl:if test=&quot;xsdLocal:suppressionPreferenceCode&quot;>&#xa;                                &lt;xsdLocal:suppressionPreferenceCode>&#xa;                                    &lt;xsl:value-of select=&quot;xsdLocal:suppressionPreferenceCode&quot;/>&#xa;                                &lt;/xsdLocal:suppressionPreferenceCode>&#xa;                            &lt;/xsl:if>&#xa;                            &lt;xsl:if test=&quot;$Accumulate/tns1:get_suppressionsResponse[position()=$POS]/out_type&quot;>&#xa;                                &lt;xsdLocal:type>&#xa;                                    &lt;xsl:value-of select=&quot;$Accumulate/tns1:get_suppressionsResponse[position()=$POS]/out_type&quot;/>&#xa;                                &lt;/xsdLocal:type>&#xa;                            &lt;/xsl:if>&#xa;                            &lt;xsl:if test=&quot;xsdLocal:source&quot;>&#xa;                                &lt;xsdLocal:source>&#xa;                                    &lt;xsl:value-of select=&quot;xsdLocal:source&quot;/>&#xa;                                &lt;/xsdLocal:source>&#xa;                            &lt;/xsl:if>&#xa;                            &lt;xsl:if test=&quot;xsdLocal:id&quot;>&#xa;                                &lt;xsdLocal:id>&#xa;                                    &lt;xsl:value-of select=&quot;xsdLocal:id&quot;/>&#xa;                                &lt;/xsdLocal:id>&#xa;                            &lt;/xsl:if>&#xa;                        &lt;/xsdLocal:suppressionsPreferences>&#xa;                    &lt;/xsl:for-each>&#xa;                &lt;/xsdLocal:listOfSuppressionsPreferences>&#xa;                &lt;xsl:copy-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:listOfCampaignMembership&quot;/>&#xa;                &lt;xsl:copy-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:listOfMailingActivities&quot;/>&#xa;                &lt;xsl:copy-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:listOfEventRegistration&quot;/>&#xa;                &lt;xsl:copy-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:listOfStandingOrders&quot;/>&#xa;                &lt;xsl:copy-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:listOfProfilingInfo&quot;/>&#xa;                &lt;xsl:copy-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:listOfOpportunity&quot;/>&#xa;                &lt;xsl:copy-of select=&quot;$populateSuppressionsIn.parameters/xsdLocal:supporter/xsdLocal:listOfFundraisingActivity&quot;/>&#xa;            &lt;/xsdLocal:supporter>&#xa;        &lt;/tns:PopulateSuppressionsResponse>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                    </tibex:inputBindings>
+                    <tibex:config>
+                        <bwext:BWActivity
+                            activityTypeID="bw.generalactivities.mapper"
+                            version="6.0.0.001"
+                            xmlns:activityconfig="http://tns.tibco.com/bw/model/activityconfig"
+                            xmlns:bwext="http://tns.tibco.com/bw/model/core/bwext"
+                            xmlns:generalactivities="http://ns.tibco.com/bw/palette/generalactivities"
+                            xmlns:suppressions="http://cruk.org/tibco/2016/siebel/reference/suppressions" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                            <activityConfig>
+                                <properties name="config" xsi:type="activityconfig:EMFProperty">
+                                    <type href="http://ns.tibco.com/bw/palette/generalactivities#//Mapper"/>
+                                    <value
+                                    inputQName="suppressions:PopulateSuppressionsResponse" xsi:type="generalactivities:Mapper"/>
+                                </properties>
+                            </activityConfig>
+                        </bwext:BWActivity>
+                    </tibex:config>
+                </tibex:activityExtension>
+            </bpws:extensionActivity>
+        </bpws:flow>
+    </bpws:scope>
+</bpws:process>

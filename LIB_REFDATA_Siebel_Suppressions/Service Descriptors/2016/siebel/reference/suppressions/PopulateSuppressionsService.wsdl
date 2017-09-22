@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:tns="http://cruk.org/tibco/2016/siebel/reference/suppressions"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	name="SuppressionsLookupService" targetNamespace="http://cruk.org/tibco/2016/siebel/reference/suppressions">
+	<wsdl:types>
+		<xsd:schema elementFormDefault="unqualified" targetNamespace="http://cruk.org/tibco/2016/siebel/reference/suppressions"
+			xmlns:siebel="http://www.cancerresearchuk.org/di/r17/target/siebel">
+			<xsd:import namespace="http://www.cancerresearchuk.org/di/r17/target/siebel" schemaLocation="../../../../../../LIB_SiebelCommon/Schemas/di/r17/target/siebel/target_siebel.xsd"></xsd:import>
+			<xsd:simpleType name="prefcodelist">
+			  <xsd:list itemType="xsd:string"/>
+			</xsd:simpleType>
+			<xsd:element name="prefcode" type="xsd:string"/>
+			<xsd:element name="PopulateSuppressionsRequest" type="siebel:SiebelMessage">
+      </xsd:element>
+			<xsd:element name="PopulateSuppressionsResponse" type="siebel:SiebelMessage">
+      </xsd:element>
+			<xsd:element name="PopulateSuppressionsFault">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="fault" type="xsd:string" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="input">
+		<wsdl:part element="tns:PopulateSuppressionsRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="output">
+		<wsdl:part element="tns:PopulateSuppressionsResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="fault">
+		<wsdl:part element="tns:PopulateSuppressionsFault" name="parameters" />
+	</wsdl:message>
+	<wsdl:portType name="PopulateSuppressionsService">
+		<wsdl:operation name="populateSuppressions">
+			<wsdl:input message="tns:input" name="input" />
+			<wsdl:output message="tns:output" name="output" />
+			<wsdl:fault message="tns:fault" name="fault" />
+		</wsdl:operation>
+	</wsdl:portType>
+</wsdl:definitions>

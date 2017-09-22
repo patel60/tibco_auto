@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<schema 
+	xmlns="http://www.w3.org/2001/XMLSchema" 
+	xmlns:com="http://www.tibco.com/PSG/CommonServices/Data/Message/Common" 
+	xmlns:rctx="http://www.tibco.com/PSG/CommonServices/Data/Message/RuntimeContext" 
+	xmlns:tibex="http://www.tibco.com/bpel/2007/extensions" 
+	xmlns:tns="http://www.tibco.com/PSG/CommonServices/Data/Message/SystemLog" 
+	elementFormDefault="qualified" 
+	targetNamespace="http://www.tibco.com/PSG/CommonServices/Data/Message/SystemLog">
+	
+	<import namespace="http://www.tibco.com/PSG/CommonServices/Data/Message/Common" schemaLocation="Common.xsd"/>
+	<import namespace="http://www.tibco.com/PSG/CommonServices/Data/Message/RuntimeContext" schemaLocation="RuntimeContext.xsd"/>
+	
+	<element name="SystemLog" type="tns:SystemLogType"/>
+	<element name="SystemLogList" type="tns:SystemLogListType"/>
+	<element name="ResponseTime" type="long"/>
+	
+	<complexType name="SystemLogListType">
+		<sequence>
+			<element maxOccurs="unbounded" minOccurs="1" ref="tns:SystemLog"/>
+		</sequence>
+	</complexType>
+	<complexType name="SystemLogType">
+		<sequence>
+			<element ref="com:CorrelationId"/>
+			<element ref="tns:LogId"/>
+			<element ref="tns:LogTimestamp"/>
+			<element ref="tns:LogType"/>
+			<element maxOccurs="1" minOccurs="0" ref="tns:Message"/>
+			<element ref="rctx:RuntimeContext"/>
+			<element ref="tns:AuditElementList" maxOccurs="1" minOccurs="0"/>
+			<element minOccurs="0" ref="tns:Payload"/>
+			<element ref="tns:ResponseTime"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="AuditElementType">
+		<sequence>
+			<element ref="tns:Name"/>
+			<element ref="tns:Value"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="AuditElementListType">
+		<sequence>
+			<element ref="tns:AuditElement" maxOccurs="unbounded" minOccurs="1"/>
+		</sequence>
+	</complexType>
+	
+	<element name="AuditElement" type="tns:AuditElementType"/>
+	
+	<element name="AuditElementList" type="tns:AuditElementListType"/>
+	<element name="Message" type="string"/>
+	<element name="LogType" type="string" />
+	<element name="Payload" type="com:PayloadType"/>
+	<element name="LogTimestamp" type="dateTime"/>
+	<element name="LogId" type="string"/>
+	<element name="Name" type="string"/>
+	<element name="Value" type="string"/>
+
+</schema>

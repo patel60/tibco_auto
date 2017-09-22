@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:jms="http://www.tibco.com/namespaces/ws/2004/soap/binding/JMS" xmlns:ns="http://www.tibco.com/PSG/CommonServices/TS/Util/SystemErrorHandler-concrete" xmlns:ns0="http://www.tibco.com/PSG/CommonServices/Message/TS/Util/SystemErrorHandler" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SystemErrorHandler" targetNamespace="http://www.tibco.com/PSG/CommonServices/TS/Util/SystemErrorHandler-concrete">
+	
+  <wsdl:types>
+    <xsd:schema xmlns:fault="http://www.tibco.com/PSG/CommonServices/Data/Message/Fault" xmlns:tns="http://www.tibco.com/PSG/CommonServices/Message/TS/Util/SystemErrorHandler" elementFormDefault="qualified" targetNamespace="http://www.tibco.com/PSG/CommonServices/Message/TS/Util/SystemErrorHandler">
+      <xsd:import namespace="http://www.tibco.com/PSG/CommonServices/Data/Message/Fault"/>
+      <xsd:element name="SendExceptionEventRequest" type="tns:SendExceptionEventRequestType"/>
+      <xsd:complexType name="SendExceptionEventRequestType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" ref="fault:FaultList"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="SendExceptionEventRequest">
+    <wsdl:part element="ns0:SendExceptionEventRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="SystemErrorHandler">
+    <wsdl:operation name="SendExceptionEvent">
+      <wsdl:input message="ns:SendExceptionEventRequest" name="SendExceptionEventInput"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SystemErrorHandlerBinding" type="ns:SystemErrorHandler">
+    <soap:binding style="document" transport="http://www.tibco.com/namespaces/ws/2004/soap/binding/JMS"/>
+    <jms:binding messageFormat="text"/>
+    <wsdl:operation name="SendExceptionEvent">
+      <soap:operation soapAction="SendExceptionEvent" style="document"/>
+      <wsdl:input>
+        <soap:body parts="parameters" use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SystemErrorHandler">
+    <wsdl:port binding="ns:SystemErrorHandlerBinding" name="SystemErrorHandlerSOAP">
+      <soap:address location="dummy"/>
+      <jms:connectionFactory>QueueConnectionFactory</jms:connectionFactory>
+      <jms:targetAddress destination="queue">AA.UK.Q.RQ.TS.Util.SystemErrorHandler.SOAP11.1</jms:targetAddress>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

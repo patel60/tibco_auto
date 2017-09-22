@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions name="getSiebelSupp" 
+	targetNamespace="http://cruk.org/tibco/2016/wsdl/suppressions" xmlns:extns="http://cruk.org/tibco/2016/get/siebelsuppressions" xmlns:tns="http://cruk.org/tibco/2016/wsdl/suppressions" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <wsdl:types>
+  <xsd:schema xmlns:extns="http://cruk.org/tibco/2016/get/siebelsuppressions" xmlns:tns="http://cruk.org/tibco/2016/wsdl/suppressions" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"  targetNamespace="http://cruk.org/tibco/2016/wsdl/suppressions">
+  <xsd:import namespace="http://cruk.org/tibco/2016/get/siebelsuppressions" schemaLocation="../Schemas/get_SuppressionsSchema.xsd"/>
+  </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="get_suppressionsRequest">
+    <wsdl:part element="extns:get_suppressionsRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="get_suppressionsResponse">
+		<wsdl:part element="extns:get_suppressionsResponse" name="channel_type"/>
+  </wsdl:message>
+  <wsdl:portType name="get_Suppressions">
+    <wsdl:operation name="get_suppressions">
+      <wsdl:input message="tns:get_suppressionsRequest" name="operationInput"/>
+      <wsdl:output message="tns:get_suppressionsResponse" name="operationOutput"/>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

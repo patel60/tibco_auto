@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:bwp="http://www.tibco.com/PSG/CommonServices/Data/Message/Internal/BWProcess"
+	xmlns:head="http://www.tibco.com/PSG/CommonServices/Data/Message/MessageHeader" 
+	xmlns:com="http://www.tibco.com/PSG/CommonServices/Data/Message/Common"
+	targetNamespace="http://www.tibco.com/PSG/CommonServices/Data/Message/Internal/BWProcess" 
+	elementFormDefault="qualified"> 
+	
+	<!-- Imports -->
+	<xsd:import namespace="http://www.tibco.com/PSG/CommonServices/Data/Message/MessageHeader" schemaLocation="../MessageHeader.xsd"/>
+	<xsd:import namespace="http://www.tibco.com/PSG/CommonServices/Data/Message/Common" schemaLocation="../Common.xsd"/>
+	
+	<!-- Elements -->
+	<xsd:element name="BWProcessHeaders" type="bwp:BWProcessHeaders"/>
+	
+	<!--  Complex Types-->
+	<xsd:complexType name="BWProcessHeaders">
+		<xsd:sequence>
+			<xsd:element ref="com:CorrelationId"/>
+			<xsd:element ref="head:TransactionId"/>
+			<xsd:element name="Invoke">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element ref="head:Source"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Response">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element ref="head:Version"/>
+						<xsd:element ref="head:Source"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+</xsd:schema>

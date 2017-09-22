@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- 2016/02/09: Added BackEndResponse response element --><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:Audit="http://www.tibco.com/PSG/CommonServices/Data/Message/Audit" xmlns:Q1="http://www.tibco.com/PSG/CommonServices/Data/Message/Fault.2" xmlns:Q2="http://www.tibco.com/PSG/CommonServices/Data/Message/MessageHeader" xmlns:Q3="http://www.tibco.com/PSG/CommonServices/Data/Message/Internal/BWProcess" xmlns:com="http://www.tibco.com/PSG/CommonServices/Data/Message/Common" xmlns:fault="http://www.tibco.com/PSG/CommonServices/Data/Message/Fault" xmlns:tns="http://www.tibco.com/PSG/CommonServices/Message/TS/Util/sub/CreateExceptionEvent" elementFormDefault="qualified" targetNamespace="http://www.tibco.com/PSG/CommonServices/Message/TS/Util/sub/CreateExceptionEvent"> 
+
+  	<!-- imports -->
+    <import namespace="http://www.tibco.com/PSG/CommonServices/Data/Message/Internal/BWProcess"/>
+    <import namespace="http://www.tibco.com/PSG/CommonServices/Data/Message/MessageHeader"/>
+    <import namespace="http://www.tibco.com/PSG/CommonServices/Data/Message/Fault.2"/>
+    <import namespace="http://www.tibco.com/PSG/CommonServices/Data/Message/Fault"/>
+	<import namespace="http://www.tibco.com/PSG/CommonServices/Data/Message/Audit"/>
+	<import namespace="http://www.tibco.com/PSG/CommonServices/Data/Message/Common"/>
+	
+	<!-- Elements -->
+	<element name="CreateExceptionEventRequest" type="tns:CreateExceptionEventRequestType"/>
+	<element name="CreateExceptionEventResponse" type="tns:CreateExceptionEventResponseType"/>
+	
+	<!-- Complex Types -->
+   	<complexType name="CreateExceptionEventRequestType">
+   		<sequence>
+   			<element minOccurs="0" ref="Audit:AuditOptions"/>
+   			<element ref="com:CorrelationId"/>
+   			<element ref="fault:ExceptionTimestamp"/>
+   			<element ref="fault:ExceptionName"/>
+   			<element ref="fault:FaultDetails"/>
+   			<element maxOccurs="1" minOccurs="0" ref="com:Payload"/>
+   			<element minOccurs="0" ref="Q3:BWProcessHeaders"/>
+   		</sequence>
+   	</complexType>
+  	
+  	<complexType name="CreateExceptionEventResponseType">
+   		<sequence>
+   			<element ref="fault:Fault"/>
+   			<element name="Response">
+   				<complexType>
+   					<choice>
+   						<element ref="Q1:ValidationFault"/>
+   						<element ref="Q1:TimeoutFault"/>
+   						<element ref="Q1:BackEndFault"/>
+   						<element ref="Q1:AuthenticationFault"/>
+   						<element ref="Q1:Fault"/>
+   					</choice>
+   				</complexType>
+   			</element>
+   			<element maxOccurs="1" minOccurs="0" name="BackEndResponse" type="string"/>
+   		</sequence>
+  	</complexType>
+	
+</schema>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jndi:namedResource xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://xsd.tns.tibco.com/amf/models/sharedresource/jdbc" xmlns:jndi="http://xsd.tns.tibco.com/amf/models/sharedresource/jndi" xmlns:subject="http://xsd.tns.tibco.com/trinity/models/identity/subject" xmi:id="_4r6a0ZqxEea-U77vXb52BA" name="org.cruk.lib.Siebel.Suppressions.Client-Siebel" type="jdbc:JdbcDataSource">
+  <jndi:reference xmi:id="_4tHUsJqxEea-U77vXb52BA" key="subjectJndiName" type="subject:SubjectConfiguration" value=""/>
+  <jndi:configuration xsi:type="jdbc:JdbcDataSource" xmi:id="_4tHUsZqxEea-U77vXb52BA">
+    <substitutionBindings xmi:id="_PfKYcKTfEeawp4mcoBR2nw" template="username" propName="/resources/org.cruk.lib.Siebel.Suppressions/Client-Siebel/JDBCConnection/Username"/>
+    <substitutionBindings xmi:id="_QW4DkKTfEeawp4mcoBR2nw" template="password" propName="/resources/org.cruk.lib.Siebel.Suppressions/Client-Siebel/JDBCConnection/Password"/>
+    <connectionConfig xsi:type="jdbc:NonXaConnection" xmi:id="_4tHUspqxEea-U77vXb52BA">
+      <substitutionBindings xmi:id="_MVl_cKTfEeawp4mcoBR2nw" template="jdbcDriver" propName="/resources/org.cruk.lib.Siebel.Suppressions/Client-Siebel/JDBCDriver/DatabaseDriver"/>
+      <substitutionBindings xmi:id="_OL2WcKTfEeawp4mcoBR2nw" template="dbURL" propName="/resources/org.cruk.lib.Siebel.Suppressions/Client-Siebel/JDBCDriver/DatabaseURL"/>
+    </connectionConfig>
+  </jndi:configuration>
+</jndi:namedResource>

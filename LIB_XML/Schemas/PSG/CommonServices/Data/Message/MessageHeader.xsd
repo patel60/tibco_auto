@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:com="http://www.tibco.com/PSG/CommonServices/Data/Message/Common" 
+	xmlns:head="http://www.tibco.com/PSG/CommonServices/Data/Message/MessageHeader" 
+	targetNamespace="http://www.tibco.com/PSG/CommonServices/Data/Message/MessageHeader"
+	elementFormDefault="qualified">
+	
+	<!-- Imports -->
+	<xsd:import namespace="http://www.tibco.com/PSG/CommonServices/Data/Message/Common" schemaLocation="Common.xsd"/>
+	
+	<!-- Elements -->
+	<xsd:element name="ApplicationVersion" type="xsd:string"/>
+	<xsd:element name="Address" type="xsd:string"/>
+	<xsd:element name="Name" type="xsd:string"/>
+	<xsd:element name="InstanceId" type="xsd:string"/>
+	<xsd:element name="RequestDateTime" type="xsd:dateTime"/>
+	<xsd:element name="RequestHeader" type="head:RequestHeaderType"/>
+	<xsd:element name="ResponseCode" type="xsd:string"/>
+	<xsd:element name="ResponseHeader" type="head:ResponseHeaderType"/>
+	<xsd:element name="ResponseDateTime" type="xsd:dateTime"/>
+	<xsd:element name="Source" type="head:SourceType"/>
+	<xsd:element name="TransactionId" type="xsd:string"/>
+	<xsd:element name="Version" type="xsd:string"/>
+	<xsd:element name="User" type="xsd:string"/>
+	
+	<!--  Complex Types-->
+	<xsd:complexType name="RequestHeaderType">
+		<xsd:sequence>
+			<xsd:element minOccurs="0" ref="com:CorrelationId"/>
+			<xsd:element minOccurs="1" ref="head:TransactionId"/>
+			<xsd:element minOccurs="1" ref="head:Version"/>
+			<xsd:element minOccurs="1" ref="head:RequestDateTime"/>
+			<xsd:element minOccurs="1" ref="head:Source"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ResponseHeaderType">
+		<xsd:sequence>
+			<xsd:element minOccurs="1" ref="com:CorrelationId"/>
+			<xsd:element minOccurs="1" ref="head:TransactionId"/>
+			<xsd:element minOccurs="1" ref="head:Version"/>
+			<xsd:element minOccurs="1" ref="head:ResponseDateTime"/>
+			<xsd:element minOccurs="1" ref="head:Source"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="SourceType">
+		<xsd:sequence>
+			<xsd:element minOccurs="1" ref="head:Name"/>
+			<xsd:element minOccurs="0" ref="head:Address"/>
+			<xsd:element minOccurs="0" ref="head:InstanceId"/>
+			<xsd:element minOccurs="0" ref="head:ApplicationVersion"/>
+			<xsd:element minOccurs="0" ref="head:User"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- Simple Types -->
+</xsd:schema>

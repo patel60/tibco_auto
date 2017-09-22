@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:Audit="http://www.tibco.com/PSG/CommonServices/Data/Message/Audit" xmlns:fault="http://www.tibco.com/PSG/CommonServices/Data/Message/Fault" xmlns:tns="http://www.tibco.com/PSG/CommonServices/Message/TS/Util/sub/SendExceptionEvent" elementFormDefault="qualified" targetNamespace="http://www.tibco.com/PSG/CommonServices/Message/TS/Util/sub/SendExceptionEvent">
+
+  	<!-- imports -->
+	<import namespace="http://www.tibco.com/PSG/CommonServices/Data/Message/Fault"/>
+	<import namespace="http://www.tibco.com/PSG/CommonServices/Data/Message/Audit"/>
+	
+	<!-- Elements -->
+	<element name="SendExceptionEventRequest" type="tns:SendExceptionEventRequestType"/>
+
+	<!-- Complex Types -->
+   	<complexType name="SendExceptionEventRequestType">
+   		<sequence>
+   			<element minOccurs="0" ref="Audit:AuditOptions"/>
+			<element ref="fault:Fault"/>
+   		</sequence>
+  	</complexType>
+</schema>

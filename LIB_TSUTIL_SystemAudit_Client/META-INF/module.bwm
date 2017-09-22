@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sca:composite xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:compositeext="http://schemas.tibco.com/amx/3.0/compositeext" xmlns:sca="http://www.osoa.org/xmlns/sca/1.0" xmlns:scaext="http://xsd.tns.tibco.com/amf/models/sca/extensions" xmlns:tibprop="http://ns.tibco.com/bw/property" xmi:id="_dUSzoAtkEeWu_5Lshf5KrQ" targetNamespace="http://tns.tibco.com/bw/composite/LIB_TSUTIL_SystemAudit_Client" name="LIB_TSUTIL_SystemAudit_Client" compositeext:version="1.0.0" compositeext:description="" compositeext:formatVersion="2">
+  <sca:property xmi:id="_dXXVwAtkEeWu_5Lshf5KrQ" name="BW.APPNODE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_dXZK8AtkEeWu_5Lshf5KrQ" name="BW.DOMAIN.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_dXbAIAtkEeWu_5Lshf5KrQ" name="BW.HOST.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_dXc1UAtkEeWu_5Lshf5KrQ" name="BW.MODULE.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_dXeDcAtkEeWu_5Lshf5KrQ" name="BW.DEPLOYMENTUNIT.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_dXf4oAtkEeWu_5Lshf5KrQ" name="BW.DEPLOYMENTUNIT.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_dXhGwAtkEeWu_5Lshf5KrQ" name="BW.APPSPACE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_dXiU4AtkEeWu_5Lshf5KrQ" name="BW.DEPLOYMENTUNIT.TYPE" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_dXkKEAtkEeWu_5Lshf5KrQ" name="BW.MODULE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_w86E4CYyEeWwpOZx1n1S6g" name="/services.ts.util.systemaudit/SystemAudit/jms.topic" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_8wj8IIe5EeW_LYql9tVLVQ" name="/services.ts.util.systemaudit/SystemAudit/sensitive.data.filter" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_w_Cr0BsOEeWjreNdXQKMcw" name="/resources/services.ts.util.systemaudit.sub/Client-ESB-AUDIT/jndi.context.factory" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_xfEPsBsOEeWjreNdXQKMcw" name="/resources/services.ts.util.systemaudit.sub/Client-ESB-AUDIT/jndi.url" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_4k4twBsMEeWjreNdXQKMcw" name="/resources/services.ts.util.systemaudit.sub/Client-ESB-AUDIT/jndi.username" type="XMLSchema:string" scaext:simpleValue="" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_7qtPMBsMEeWjreNdXQKMcw" name="/resources/services.ts.util.systemaudit.sub/Client-ESB-AUDIT/jndi.password" type="tibprop:password" scaext:simpleValue="" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_IXAisBsNEeWjreNdXQKMcw" name="/resources/services.ts.util.systemaudit.sub/Client-ESB-AUDIT/queue.connection.factory" type="XMLSchema:string" scaext:simpleValue="" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_Lel-sBsNEeWjreNdXQKMcw" name="/resources/services.ts.util.systemaudit.sub/Client-ESB-AUDIT/topic.connection.factory" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_fCNS0BsOEeWjreNdXQKMcw" name="/resources/services.ts.util.systemaudit.sub/Client-ESB-AUDIT/username" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_hCOp0BsOEeWjreNdXQKMcw" name="/resources/services.ts.util.systemaudit.sub/Client-ESB-AUDIT/password" type="tibprop:password" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_5dSbkNbsEeWQ3P8IGqOOrQ" name="/data/services/area.short.names" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+</sca:composite>

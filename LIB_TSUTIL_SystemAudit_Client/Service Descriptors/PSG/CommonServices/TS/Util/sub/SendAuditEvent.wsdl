@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions 
+	xmlns:extns="http://www.tibco.com/PSG/CommonServices/Message/TS/Util/sub/SendAuditEvent" 
+	xmlns:tns="http://www.tibco.com/PSG/CommonServices/TS/Util/Sub/SendAuditEvent" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+	name="SendAuditEvent" 
+	targetNamespace="http://www.tibco.com/PSG/CommonServices/TS/Util/Sub/SendAuditEvent">
+	
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import namespace="http://www.tibco.com/PSG/CommonServices/Message/TS/Util/sub/SendAuditEvent" schemaLocation="../../../../../../Schemas/PSG/CommonServices/Message/TS/Util/sub/SendAuditEvent.xsd">
+			</xsd:import>
+		</xsd:schema>
+  	</wsdl:types>
+  
+	<wsdl:message name="SendAuditEventRequest">
+		<wsdl:part element="extns:SendAuditEventRequest" name="parameters"/>
+	</wsdl:message>
+	<wsdl:portType name="SendAuditEvent">
+	    <wsdl:operation name="SendAuditEvent">
+	      <wsdl:input message="tns:SendAuditEventRequest" name="SendAuditEventinput"/>
+	    </wsdl:operation>
+	</wsdl:portType>
+</wsdl:definitions>
