@@ -1,0 +1,23 @@
+Manifest-Version: 1.1.0.qualifier
+Bundle-SymbolicName: LIB_SiebelCommon
+TIBCO-BW-SharedModule: META-INF/module.bwm
+Bundle-ManifestVersion: 2
+Bundle-Vendor: Cancer Research UK
+TIBCO-BW-ModuleSharedVariables: META-INF/module.msv
+Require-Capability: com.tibco.bw.model; filter:="(name=bwext)"
+TIBCO-BW-ConfigProfile: META-INF/default.substvar
+TIBCO-BW-Version: 6.3.3 V23 2016-08-10
+Provide-Capability: com.tibco.bw.module; name="LIB_SiebelCommon"; vers
+ ion:Version="1.0.0",com.tibco.bw.schemas; ns="http://www.cancerresear
+ chuk.org/2016/di/target/siebel/event",com.tibco.bw.schemas; ns="http:
+ //www.cancerresearchuk.org/2016/di/target/siebel/reservation",com.tib
+ co.bw.schemas; ns="http://www.cancerresearchuk.org/di/r17/target/sieb
+ el",com.tibco.bw.schemas; ns="http://www.cancerresearchuk.org/giftAid
+ /claimSubmission/target/siebel",com.tibco.bw.schemas; ns="http://www.
+ cancerresearchuk.org/giftAid/claimSubmissionRequest/target/siebel",co
+ m.tibco.bw.schemas; ns="http://www.siebel.com/xml/SRM%20DI%20Fundrais
+ ing%20Activity%20-%20Int_01"
+Bundle-Name: SiebelCommon Module
+Bundle-Version: 1.1.0.qualifier
+TIBCO-BW-JobSharedVariables: META-INF/module.jsv
+

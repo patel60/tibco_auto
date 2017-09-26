@@ -1,0 +1,33 @@
+Manifest-Version: 1.1.0.qualifier
+Bundle-SymbolicName: LIB_XML
+TIBCO-BW-SharedModule: META-INF/module.bwm
+Bundle-ManifestVersion: 2
+Bundle-Vendor: TIBCO Software Inc.
+TIBCO-BW-ModuleSharedVariables: META-INF/module.msv
+Require-Capability: com.tibco.bw.model; filter:="(name=bwext)"
+TIBCO-BW-ConfigProfile: META-INF/default.substvar
+TIBCO-BW-Version: 6.2.1 V18 2015-03-13
+Provide-Capability: com.tibco.bw.module; name="LIB_XML"; version:Versi
+ on="1.0.0",com.tibco.bw.schemas; ns="http://www.tibco.com/PSG/CommonS
+ ervices/Data/Message/Audit",com.tibco.bw.schemas; ns="http://www.tibc
+ o.com/PSG/CommonServices/Data/Message/AuditEvent",com.tibco.bw.schema
+ s; ns="http://www.tibco.com/PSG/CommonServices/Data/Message/Common",c
+ om.tibco.bw.schemas; ns="http://www.tibco.com/PSG/CommonServices/Data
+ /Message/Error",com.tibco.bw.schemas; ns="http://www.tibco.com/PSG/Co
+ mmonServices/Data/Message/Fault",com.tibco.bw.schemas; ns="http://www
+ .tibco.com/PSG/CommonServices/Data/Message/Fault.2",com.tibco.bw.sche
+ mas; ns="http://www.tibco.com/PSG/CommonServices/Data/Message/Interna
+ l/Activator",com.tibco.bw.schemas; ns="http://www.tibco.com/PSG/Commo
+ nServices/Data/Message/Internal/BWProcess",com.tibco.bw.schemas; ns="
+ http://www.tibco.com/PSG/CommonServices/Data/Message/Internal/Throwab
+ le",com.tibco.bw.schemas; ns="http://www.tibco.com/PSG/CommonServices
+ /Data/Message/Internal/ValidationError",com.tibco.bw.schemas; ns="htt
+ p://www.tibco.com/PSG/CommonServices/Data/Message/MessageHeader",com.
+ tibco.bw.schemas; ns="http://www.tibco.com/PSG/CommonServices/Data/Me
+ ssage/RuntimeContext",com.tibco.bw.schemas; ns="http://www.tibco.com/
+ PSG/CommonServices/Data/Message/SystemLog",com.tibco.bw.wsdls; ns="ht
+ tp://www.tibco.com/PSG/CommonServices/TS/Util/Activator"
+Bundle-Name: LIB_XML Module
+Bundle-Version: 1.1.0.qualifier
+TIBCO-BW-JobSharedVariables: META-INF/module.jsv
+

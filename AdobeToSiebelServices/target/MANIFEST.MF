@@ -1,0 +1,27 @@
+Manifest-Version: 1.1.0.qualifier
+Bundle-SymbolicName: AdobeToSiebelServices
+Bundle-Name: AdobeToSiebelEmailBounces Module
+Bundle-Version: 1.1.0.qualifier
+Bundle-ManifestVersion: 2
+Bundle-Vendor: TIBCO Software Inc.
+TIBCO-BW-ModuleSharedVariables: META-INF/module.msv
+Require-Capability: com.tibco.bw.model; filter:="(name=bwext)",com.tib
+ co.bw.module; filter:="(&(name=LIB_TSUTIL_SystemAudit_Client)(version
+ =1.0.0))",com.tibco.bw.module; filter:="(&(name=LIB_XML)(version=1.0.
+ 0))",com.tibco.bw.module; filter:="(&(name=LIB_TSUTIL_SystemErrorHand
+ ler_Client)(version=1.0.0))",com.tibco.bw.module; filter:="(&(name=LI
+ B_SiebelCommon)(version=1.0.0))",com.tibco.bw.module; filter:="(&(nam
+ e=LIB_REFDATA_Siebel_Suppressions)(version=1.0.0))",com.tibco.bw.pale
+ tte; filter:="(name=bw.generalactivities)",com.tibco.bw.palette; filt
+ er:="(name=bw.jdbc)",com.tibco.bw.palette; filter:="(name=bw.sftp)",c
+ om.tibco.bw.palette; filter:="(name=bw.jms)",com.tibco.bw.palette; fi
+ lter:="(name=bw.parse)",com.tibco.bw.sharedresource.model; filter:="(
+ name=bw.dataformat)",com.tibco.bw.sharedresource.model; filter:="(nam
+ e=bw.jdbc)",com.tibco.bw.sharedresource.model; filter:="(name=bw.jmsc
+ onnection)",com.tibco.bw.sharedresource.model; filter:="(name=bw.sftp
+ )"
+TIBCO-BW-ConfigProfile: META-INF/default.substvar
+TIBCO-BW-ApplicationModule: META-INF/module.bwm
+TIBCO-BW-JobSharedVariables: META-INF/module.jsv
+TIBCO-BW-Version: 6.3.3 HF1 V26 2016-10-10
+

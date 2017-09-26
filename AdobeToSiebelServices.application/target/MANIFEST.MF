@@ -1,0 +1,10 @@
+Manifest-Version: 1.1.0.qualifier
+TIBCO-BW-Application: META-INF/TIBCO.xml
+Bundle-SymbolicName: AdobeToSiebelServices.application
+Bundle-Name: AdobeToSiebelEmailBounces Application
+Bundle-Version: 1.1.0.qualifier
+Bundle-ManifestVersion: 2
+Bundle-Vendor: TIBCO Software Inc.
+TIBCO-BW-ConfigProfile: META-INF/test.substvar
+TIBCO-BW-Version: 6.3.3 HF1 V26 2016-10-10
+
